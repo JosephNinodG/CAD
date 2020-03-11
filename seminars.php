@@ -43,7 +43,7 @@ if($confNameResults->success){
 	$confNameSuccess = false;
 	$error = $confNameResults->error;
 }
-echo ($confName);
+
 
 
 
