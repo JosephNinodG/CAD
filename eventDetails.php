@@ -81,7 +81,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="presentation-form" enctype="multipart/form-data">
+                        <form action='post' id="presentation-form" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="presentation-title">Document Title</label>
                                 <input type="text" class="form-control" id="presentation-title" name="presentation-title">
@@ -95,14 +95,15 @@
                                 <input type="text" class="form-control" id="presentation-purpose" name="presentation-purpose">
                             </div>
                             <div class="form-group">
-                                <input id="presentation-file" name="presentation-file[]" type="file" />
+                                <input id="presentation-file" name="presentation-file" type="file" />
                             </div>
-                        </form>
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-trigger="file-upload">UPLOAD</button>
+                        <button type="submit" class="btn btn-dark" data-trigger="file-upload">UPLOAD</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

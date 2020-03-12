@@ -35,16 +35,27 @@ $(document).ready(function() {
         });
     });
 
-    $('body').on('click tap', '[data-trigger="file-upload"]', function(event) {
+    $(document).on("submit", "#presentation-form", function(event){
         event.preventDefault();
-        
-        $.ajax({
-            url: 'fileUpload.php',
-            type: 'POST',
-            data: $('#presentation-form').serialize(),
+
+        $.when(
+            doUpload(this)
+        ).done(function(file) {
+            console.log(file);
         });
     });
 });
+
+function doUpload($this) {
+    return $.ajax({
+        url: 'fileUpload.php',
+        type: 'POST',
+        dataType: 'JSON',
+        processData: false,
+        contentType: false,
+        data: new FormData($this),
+    });
+}
 
 function updateProgressBar(completePercent) {
     if (window.formValues.shortDescription == "" && $('body').find('#seminar-short-description').val().trim() != "") {

@@ -1,4 +1,3 @@
 <?php
-     var_dump($_FILES);
-     var_dump($_POST);
+     echo json_encode(base64_encode(file_get_contents($_FILES['presentation-file']['tmp_name']))); 
 ?>
