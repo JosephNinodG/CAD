@@ -107,12 +107,12 @@ if($success){
 		echo "<div class='seminarBox'>";
 		echo "<div class='row'>";
 		echo "<div class='col-5'>$confName</div>";
-		
+		$dateOf=date('M j', strtotime($seminar->start_time));
 		$startTime=date('H:i', strtotime($seminar->start_time));
 		$endTime=date('H:i', strtotime($seminar->end_time));
-
+		echo "<div class='col-sm'>Date: $dateOf</div>";
 		echo "<div class='col-sm'>Time: $startTime - $endTime</div>";
-		
+
 		//echo "<div class='col-sm'>End: $endTime</div>";
 		echo "<div class='col-sm percentageComp' >0% complete! </div>";
 		echo "</div>";
