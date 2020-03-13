@@ -1,0 +1,63 @@
+header {
+    background-color: #FECE1A;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.BookMeIn2Logo {
+    padding-left: 25px;
+
+}
+
+.wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+#LoginForm {
+    border-radius: 25px;
+    background-color: #FECE1A;
+    align-content: center;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    padding-left: 40px;
+    padding-right: 40px;
+    /* column-width: 600px; */
+
+}
+
+#LoginLabel {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#labelStyle {
+    font-weight: bold;
+}
+
+#loginbutton {
+    background-color: black;
+    border-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.black-space {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+footer {
+    background-color: #FECE1A;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.TandC-PrivacyStatment {
+    text-align:center;
+}
+
+.TandC-PrivacyStatment a {
+    color: black;
+}
