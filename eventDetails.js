@@ -1,7 +1,9 @@
 $(document).ready(function() {
     let completePercent = 12.5;
 
-     window.formValues = {
+    window.filesToUpload = {};
+
+    window.formValues = {
         'shortDescription'  : $('body').find('#seminar-short-description').val(),
         'longDescription'   : $('body').find('#seminar-long-description').val(),
         'shortBiography'    : $('body').find('#seminar-short-biography').val(),
@@ -41,8 +43,26 @@ $(document).ready(function() {
         $.when(
             doUpload(this)
         ).done(function(file) {
-            console.log(file);
+            if (file.error) {
+                // show error
+            } else {
+                processFile(file.file);
+                $('body').find('#presentation-modal').modal('hide');
+            }
         });
+    });
+
+    $('body').on('click tap', '[data-trigger="remove-file"]', function(event) {
+        event.preventDefault();
+
+        let $this = $(this);
+        let deleteFile = confirm('Are you sure you want to remove this file?');
+        let parentFile = $(this).parents('[data-file-container]');
+
+        if (deleteFile) {
+            delete window.filesToUpload[$this.attr('data-file')];
+            parentFile.remove();
+        }
     });
 });
 
@@ -114,4 +134,44 @@ function animateProgressBar(completePercent) {
 
     $(".progress-bar").attr('aria-valuenow', percent);
     $(".progress-bar").html(percent);
+}
+
+function processFile(file) {
+    window.filesToUpload[file.title] = {
+        'title'     : file.title,
+        'name'      : file.name,
+        'purpose'   : file.purpose,
+        'data'      : file.data
+    }
+
+    showFile(file);
+}
+
+function showFile(file) {
+    let html;
+    let fileLayout;
+    let container = $('body').find('[data-target="files-container"]').html();
+    let icon = '<i class="far fa-file-powerpoint"></i>';
+
+    if (file.type == 'jpg' || file.type == 'png') {
+        icon = '<i class="far fa-file-image"></i>';
+    }
+
+    let fileName = `${file.name}.${file.type}`;
+
+    fileLayout = `<div class="input-group mb-3">`;
+    fileLayout += `<div class="input-group-prepend">`;
+    fileLayout += `<span class="input-group-text" id="icon-for-${fileName}">${icon}</span>`;
+    fileLayout += `</div>`;
+    fileLayout += `<input type="text" class="form-control" aria-label="Username" aria-describedby="icon-for-${fileName}" readonly value="${fileName}">`;
+    fileLayout += `<div class="input-group-append">`;
+    fileLayout += `<button class="btn btn-danger" type="button" data-trigger="remove-file" data-file="${file.title}"><i class="fas fa-trash"></i></button>`;
+    fileLayout += `</div>`;
+    fileLayout += `</div>`;
+
+    html = `<div class="col-auto" data-file-container>`;
+    html += fileLayout;
+    html += '</div>';
+
+    $('body').find('[data-target="files-container"]').html(container + html);
 }

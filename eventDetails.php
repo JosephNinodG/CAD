@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/176870990a.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="master.css">
         <title>Event Details</title>
     </head>
@@ -62,6 +63,7 @@
                         <button type="submit" class="btn btn-secondary mb-2" data-target="upload-presentation">UPLOAD PRESENTATION</button>
                     </div>
                 </div>
+                <div class="row" data-target="files-container"></div>
                 <div class="row">
                     <div class="col text-right">
                         <button type="submit" class="btn btn-warning mb-2" data-target="save-details">SAVE</button>
@@ -80,8 +82,8 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form action='post' id="presentation-form" enctype="multipart/form-data">
+                    <form action='post' id="presentation-form" enctype="multipart/form-data">
+                        <div class="modal-body">
                             <div class="form-group">
                                 <label for="presentation-title">Document Title</label>
                                 <input type="text" class="form-control" id="presentation-title" name="presentation-title">
@@ -97,12 +99,11 @@
                             <div class="form-group">
                                 <input id="presentation-file" name="presentation-file" type="file" />
                             </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark" data-trigger="file-upload">UPLOAD</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark" data-trigger="file-upload">UPLOAD</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+                        </div>
                     </form>
                 </div>
             </div>
