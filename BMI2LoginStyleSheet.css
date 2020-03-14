@@ -1,0 +1,96 @@
+html, body {height: 100%; margin:0px !important;}
+
+header{
+    position: fixed;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    background-color: #FECE1A;
+    z-index: 1;
+}
+
+#Logo {
+    background-size: contain;
+    width: 10%;
+    padding-left: 20px;
+    position: fixed;
+    top: 10px;
+    bottom: 10px;
+}
+
+#content {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color:#181A1C;
+    position: fixed;
+    width:100%;
+    top: 100px;
+    bottom: 80px;
+
+}
+
+.container {
+    display: flex-inline;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    /* justify-content: center; */
+}
+
+
+#BlackSpace {
+    text-align: center;
+    background-color: #181A1C;
+}
+
+#LoginFormArea {
+    background-color: #181A1C;
+}
+
+#LoginForm {
+    border-radius: 25px;
+    background-color: #FECE1A;
+    align-content: center;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* column-width: 600px; */
+
+}
+
+#LoginLabel {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#labelStyle {
+    font-weight: bold;
+}
+
+#loginbutton {
+    background-color: black;
+    border-color: black;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+}
+
+footer {
+    background-color: #FECE1A;
+    position: fixed;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+    z-index: 1;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.TandC-PrivacyStatment {
+    text-align:center;
+}
+
+.TandC-PrivacyStatment a {
+    color: black;
+}
