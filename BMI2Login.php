@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-0 col-sm-2" id="BlackSpace">                      
+                    <div class="col-xs-0 col-sm-0 col-md-2" id="BlackSpace">                      
                     </div>
                     <div class="col" id="LoginFormArea">
                         <form action='login.php' method='post' id="LoginForm">
@@ -46,7 +46,7 @@
                             <button type='submit' class="btn btn-primary" id='loginbutton'>Login</button>
                         </form>
                     </div>
-                    <div class="col-xs-0 col-sm-2" id="BlackSpace">
+                    <div class="col-xs-0 col-sm-0 col-md-2" id="BlackSpace">
                     </div>
                 </div>
                 <div class="row">

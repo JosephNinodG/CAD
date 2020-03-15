@@ -1,5 +1,29 @@
 html, body {height: 100%; margin:0px !important;}
 
+@media (max-height: 415px) {
+    header {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+
+    #content {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+
+    }
+
+    .container {
+        transform: scale(0.9);
+    }
+
+}
+
 header{
     position: fixed;
     top: 0;
@@ -37,7 +61,7 @@ header{
     flex-direction: column;
     align-items: center;
     align-content: center;
-    /* justify-content: center; */
+    justify-content: center;
 }
 
 
