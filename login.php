@@ -28,7 +28,7 @@ $results = json_decode($output);
 if($results->success){
 	if($results->data->loggedin){
 		$_SESSION['apikey'] = $results->data->apikey;
-		header("Location: seminars.php");
+		header("Location: Dashboard.php");
 		exit;
 	}else{
 		echo "Unable to login.  Error: ".$results->data->message;
