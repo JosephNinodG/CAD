@@ -21,7 +21,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $output = curl_exec($ch);
 
 // close curl resource to free up system resources
-curl_close($ch);  
+curl_close($ch);
 
 $results = json_decode($output);
 
@@ -36,7 +36,7 @@ if($results->success){
 		echo "<a href='index.php'>Return to Login Page</a>";
 	}
 }else{
-	echo "Unable to login.  Error: ".$results->error; 
+	echo "Unable to login.  Error: ".$results->error;
 	echo "<br/>";
 	echo "<a href='index.php'>Return to Login Page</a>";
 }

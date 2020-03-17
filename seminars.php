@@ -79,10 +79,20 @@ if($results->success){
 <head>
 <style>
 	body {
-		background-color: black;
+		background-color: #181A1C;
+		color: #181A1C;
 	}
 	.seminarBox {
 		background-color: white;
+		border-radius: 10px;
+		font-size: 14px;
+		padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+	}
+ 	h2 {
+		font-size: 18px;
 	}
 	.percentageComp {
 		text-align:right;
@@ -124,7 +134,7 @@ if($success){
 		echo "</div>";
 		echo "</div>";
 
-		echo "<br/><br/>";
+		echo "<br/>";
 
 		$seminarCount++;
 		}
