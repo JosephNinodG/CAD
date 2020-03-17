@@ -114,7 +114,8 @@ if($success){
 	$seminarCount = 0;
 	foreach($seminars as $seminar){
 		if ($seminar->event_type=="Seminar") {
-		echo "<div class='seminarBox'>";
+
+		echo "<div class='seminarBox' onclick=window.open('sidebar.php?id=$seminar->id')>";
 		echo "<div class='row'>";
 		echo "<div class='col-5'>$confName</div>";
 		$dateOf=date('M j', strtotime($seminar->start_time));
