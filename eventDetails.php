@@ -38,6 +38,9 @@
                             <label for="seminar-title">Presentation Type</label>
                             <select class="form-control" id="seminar-type">
                                 <option value="">Select</option>
+								<option value="">Seminar</option>
+								<option value="">Video Presentation</option>
+								<option value="">Workshop</option>
                             </select>
                         </div>
                         <div class="form-group">
