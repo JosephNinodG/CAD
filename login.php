@@ -31,10 +31,14 @@ if($results->success){
 		header("Location: seminars.php");
 		exit;
 	}else{
-		echo "Unable to login.  Error: ".$results->data->message;
+		echo "Unable to login.  Error: ".$results->data->error;
+		echo "<br/>";
+		echo "<a href='index.php'>Return to Login Page</a>";
 	}
 }else{
-	echo "Unable to login.  Error: ".$results->error;
+	echo "Unable to login.  Error: ".$results->error; 
+	echo "<br/>";
+	echo "<a href='index.php'>Return to Login Page</a>";
 }
 
 ?>
