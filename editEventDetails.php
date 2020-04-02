@@ -4,13 +4,14 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/176870990a.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.tiny.cloud/1/44tuep5jmn2ahu9y2iv6e6u3n7srjy2odh8nht32st8jyexs/tinymce/5/tinymce.min.js" referrerpolicy="origin"/></script>
         <link rel="stylesheet" href="master.css">
         <title>Event Details</title>
     </head>
     <body>
         <div class="container">
             <form id="details-form" >
-                <div class="row pt-3">
+                <div class="row pt-3 sticky">
                     <div class="col">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 12.5%;" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100">12.5%</div>
@@ -19,7 +20,7 @@
                 </div>
                 <div class="row pt-3">
                     <div class="col">
-                    	<div data-target="cover-image-container"></div>
+                    	<div class="cover-image" data-target="cover-image-container"></div>
                     </div>
                 </div>
                 <div class="row pt-3">
@@ -46,19 +47,19 @@
                         </div>
                         <div class="form-group">
                             <label for="seminar-short-description">Short Description</label>
-                            <textarea style="resize: none" id="seminar-short-description" class="form-control" rows="3"></textarea>
+                            <textarea style="resize: none" id="seminar-short-description" class="form-control textarea-short-description" rows="3"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="seminar-long-description">Long Description</label>
-                            <textarea style="resize: none" id="seminar-long-description" class="form-control" rows="3"></textarea>
+                            <textarea style="resize: none" id="seminar-long-description" class="form-control textarea-long-description" rows="3"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="seminar-short-biography">Short Biography</label>
-                            <textarea style="resize: none" id="seminar-short-biography" class="form-control" rows="3"></textarea>
+                            <textarea style="resize: none" id="seminar-short-biography" class="form-control textarea-short-biography" rows="3"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="seminar-long-biography">Long Biography</label>
-                            <textarea style="resize: none" id="seminar-long-biography" class="form-control" rows="3"></textarea>
+                            <textarea style="resize: none" id="seminar-long-biography" class="form-control textarea-long-biography" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -88,8 +89,10 @@
                     </div>
                     <form action='post' id="cover-image-form" enctype="multipart/form-data">
                         <div class="modal-body">
+							<div class="alert alert-danger" role="alert" data-target="cover-image-error" style="display: none;"></div>
                             <div class="form-group">
                                 <input id="cover-image-file" name="cover-image-file" type="file" />
+								<small class="form-text text-muted">Note: only .jpg and .png files are permitted.</small>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -112,20 +115,22 @@
                     </div>
                     <form action='post' id="presentation-form" enctype="multipart/form-data">
                         <div class="modal-body">
+							<div class="alert alert-danger" role="alert" data-target="presentation-error" style="display: none;"></div>
                             <div class="form-group">
                                 <label for="presentation-title">Document Title</label>
-                                <input type="text" class="form-control" id="presentation-title" name="presentation-title">
+                                <input type="text" class="form-control" id="presentation-title" name="presentation-title" required>
                             </div>
                             <div class="form-group">
                                 <label for="presentation-name">File Name</label>
-                                <input type="text" class="form-control" id="presentation-name" name="presentation-name">
+                                <input type="text" class="form-control" id="presentation-name" name="presentation-name" required>
                             </div>
                             <div class="form-group">
                                 <label for="presentation-purpose">File Purpose</label>
-                                <input type="text" class="form-control" id="presentation-purpose" name="presentation-purpose">
+                                <input type="text" class="form-control" id="presentation-purpose" name="presentation-purpose" required>
                             </div>
                             <div class="form-group">
                                 <input id="presentation-file" name="presentation-file" type="file" />
+								<small class="form-text text-muted">Note: only .jpg .png .pdf .ppt and .pptx files are permitted.</small>
                             </div>
                         </div>
                         <div class="modal-footer">

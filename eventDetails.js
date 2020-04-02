@@ -1,23 +1,61 @@
 $(document).ready(function() {
-    let completePercent = 12.5;
+	tinymce.init({
+		selector: '.textarea-short-description',
+		init_instance_callback: function(editor) {
+			editor.on('change', function(e) {
+				updateProgressBar();
+			});
+		}
+    });
 
+	tinymce.init({
+		selector: '.textarea-long-description',
+			init_instance_callback: function(editor) {
+			editor.on('change', function(e) {
+				updateProgressBar();
+			});
+		}
+    });
+
+	tinymce.init({
+		selector: '.textarea-short-biography',
+		init_instance_callback: function(editor) {
+			editor.on('change', function(e) {
+				updateProgressBar();
+			});
+		}
+    });
+
+	tinymce.init({
+		selector: '.textarea-long-biography',
+		init_instance_callback: function(editor) {
+			editor.on('change', function(e) {
+				updateProgressBar();
+			});
+		}
+    });
+
+    window.completePercent = 12.5;
     window.filesToUpload = {};
 	window.imageToUpload = {};
-
     window.formValues = {
 		'seminarType'		: $('body').find('#seminar-type').val(),
-        'shortDescription'  : $('body').find('#seminar-short-description').val(),
-        'longDescription'   : $('body').find('#seminar-long-description').val(),
-        'shortBiography'    : $('body').find('#seminar-short-biography').val(),
-        'longBiography'     : $('body').find('#seminar-long-biography').val(),
+        'shortDescription'  : tinymce.editors['seminar-short-description'].getContent(),
+        'longDescription'   : tinymce.editors['seminar-long-description'].getContent(),
+        'shortBiography'    : tinymce.editors['seminar-short-biography'].getContent(),
+        'longBiography'     : tinymce.editors['seminar-long-biography'].getContent(),
     }
 
     $('body').on('click tap', '[data-target="save-details"]', function() {
         event.preventDefault();
+
+		updateEventDetails();
     });
 
     $('body').on('click tap', '[data-target="cancel-details"]', function() {
         event.preventDefault();
+
+		// window.location.href = "";
     });
 
     $('body').on('click tap', '[data-target="upload-presentation"]', function() {
@@ -33,12 +71,7 @@ $(document).ready(function() {
     });
 
     $('body #details-form').on('change paste', ':input', function() {
-        $.when(
-            updateProgressBar(completePercent)
-        ).done(function(percent) {
-            completePercent = percent;
-            animateProgressBar(completePercent);
-        });
+		updateProgressBar();
     });
 
     $(document).on("submit", "#presentation-form", function(event){
@@ -50,11 +83,13 @@ $(document).ready(function() {
             doUpload(this)
         ).done(function(file) {
             if (file.error) {
-                // show error
+                $('body').find('[data-target="presentation-error"]').html(file.errorMsg);
+				$('body').find('[data-target="presentation-error"]').show();
             } else {
+				$('body').find('[data-target="presentation-error"]').hide();
                 processFile(file.file);
                 $('body').find('#presentation-modal').modal('hide');
-				completePercent = updateProgressBarAfterUpload(currentFiles, completePercent);
+				updateProgressBarAfterUpload(currentFiles);
             }
         });
     });
@@ -68,12 +103,14 @@ $(document).ready(function() {
             doImageUpload(this)
         ).done(function(file) {
             if (file.error) {
-                // show error
+				$('body').find('[data-target="cover-image-error"]').html(file.errorMsg);
+				$('body').find('[data-target="cover-image-error"]').show();
             } else {
+				$('body').find('[data-target="cover-image-error"]').hide();
                 displayFile(file.file);
 				$('body').find('[data-trigger="remove-image"]').attr('disabled', false);
                 $('body').find('#cover-image-modal').modal('hide');
-				completePercent = updateProgressBarAfterImageUpload(currentImage, completePercent);
+				updateProgressBarAfterImageUpload(currentImage);
             }
         });
     });
@@ -89,7 +126,7 @@ $(document).ready(function() {
         if (deleteFile) {
             delete window.filesToUpload[$this.attr('data-file')];
             parentFile.remove();
-			completePercent = updateProgressBarAfterUpload(currentFiles, completePercent);
+			updateProgressBarAfterUpload(currentFiles);
         }
     });
 
@@ -103,10 +140,14 @@ $(document).ready(function() {
             window.imageToUpload = {};
             $('body').find('[data-target="cover-image-container"]').html('');
 			$('body').find('[data-trigger="remove-image"]').attr('disabled', true);
-			completePercent = updateProgressBarAfterImageUpload(currentImage, completePercent);
+			updateProgressBarAfterImageUpload(currentImage);
         }
 	});
 });
+
+function updateEventDetails() {
+	// submit data via API
+}
 
 function doUpload($this) {
     return $.ajax({
@@ -130,90 +171,92 @@ function doImageUpload($this) {
     });
 }
 
-function updateProgressBarAfterUpload(currentFiles, completePercent) {
+function updateProgressBarAfterUpload(currentFiles) {
 	if (currentFiles == 0 && Object.keys(window.filesToUpload).length > 0) {
-        completePercent += 12.5;
+        window.completePercent += 12.5;
     }
 
     if (currentFiles > 0 && Object.keys(window.filesToUpload).length == 0) {
-        completePercent -= 12.5;
+        window.completePercent -= 12.5;
     }
 
-	animateProgressBar(completePercent);
+	animateProgressBar();
 
-	return completePercent;
+	return;
 }
 
-function updateProgressBarAfterImageUpload(currentImage, completePercent) {
+function updateProgressBarAfterImageUpload(currentImage) {
 	if (currentImage == 0 && Object.keys(window.imageToUpload).length > 0) {
-        completePercent += 12.5;
+        window.completePercent += 12.5;
     }
 
     if (currentImage > 0 && Object.keys(window.imageToUpload).length == 0) {
-        completePercent -= 12.5;
+        window.completePercent -= 12.5;
     }
 
-	animateProgressBar(completePercent);
+	animateProgressBar();
 
-	return completePercent;
+	return;
 }
 
-function updateProgressBar(completePercent) {
+function updateProgressBar() {
 	if (window.formValues.seminarType == "" && $('body').find('#seminar-type').val().trim() != "") {
         window.formValues.seminarType = $('body').find('#seminar-type').val().trim();
-        completePercent += 12.5;
+        window.completePercent += 12.5;
     }
 
     if (window.formValues.seminarType != "" && $('body').find('#seminar-type').val().trim() == "") {
         window.formValues.seminarType = $('body').find('#seminar-type').val().trim();
-        completePercent -= 12.5;
+        window.completePercent -= 12.5;
     }
 
-    if (window.formValues.shortDescription == "" && $('body').find('#seminar-short-description').val().trim() != "") {
-        window.formValues.shortDescription = $('body').find('#seminar-short-description').val().trim();
-        completePercent += 12.5;
+    if (window.formValues.shortDescription == "" && tinymce.editors['seminar-short-description'].getContent() != "") {
+        window.formValues.shortDescription = tinymce.editors['seminar-short-description'].getContent();
+        window.completePercent += 12.5;
     }
 
-    if (window.formValues.shortDescription != "" && $('body').find('#seminar-short-description').val().trim() == "") {
-        window.formValues.shortDescription = $('body').find('#seminar-short-description').val().trim();
-        completePercent -= 12.5;
+    if (window.formValues.shortDescription != "" && tinymce.editors['seminar-short-description'].getContent() == "") {
+        window.formValues.shortDescription = tinymce.editors['seminar-short-description'].getContent();
+        window.completePercent -= 12.5;
     }
 
-    if (window.formValues.longDescription == "" && $('body').find('#seminar-long-description').val().trim() != "") {
-        window.formValues.longDescription = $('body').find('#seminar-long-description').val().trim();
-        completePercent += 12.5;
+    if (window.formValues.longDescription == "" && tinymce.editors['seminar-long-description'].getContent() != "") {
+        window.formValues.longDescription = tinymce.editors['seminar-long-description'].getContent();
+        window.completePercent += 12.5;
     }
 
-    if (window.formValues.longDescription != "" && $('body').find('#seminar-long-description').val().trim() == "") {
-        window.formValues.longDescription = $('body').find('#seminar-long-description').val().trim();
-        completePercent -= 12.5;
+    if (window.formValues.longDescription != "" && tinymce.editors['seminar-long-description'].getContent() == "") {
+        window.formValues.longDescription = tinymce.editors['seminar-long-description'].getContent();
+        window.completePercent -= 12.5;
     }
 
-    if (window.formValues.shortBiography == "" && $('body').find('#seminar-short-biography').val().trim() != "") {
-        window.formValues.shortBiography = $('body').find('#seminar-short-biography').val().trim();
-        completePercent += 12.5;
+    if (window.formValues.shortBiography == "" && tinymce.editors['seminar-short-biography'].getContent() != "") {
+        window.formValues.shortBiography = tinymce.editors['seminar-short-biography'].getContent();
+        window.completePercent += 12.5;
     }
 
-    if (window.formValues.shortBiography != "" && $('body').find('#seminar-short-biography').val().trim() == "") {
-        window.formValues.shortBiography = $('body').find('#seminar-short-biography').val().trim();
-        completePercent -= 12.5;
+    if (window.formValues.shortBiography != "" && tinymce.editors['seminar-short-biography'].getContent() == "") {
+        window.formValues.shortBiography = tinymce.editors['seminar-short-biography'].getContent();
+        window.completePercent -= 12.5;
     }
 
-    if (window.formValues.longBiography == "" && $('body').find('#seminar-long-biography').val().trim() != "") {
-        window.formValues.longBiography = $('body').find('#seminar-long-biography').val().trim();
-        completePercent += 12.5;
+    if (window.formValues.longBiography == "" && tinymce.editors['seminar-long-biography'].getContent() != "") {
+        window.formValues.longBiography = tinymce.editors['seminar-long-biography'].getContent();
+        window.completePercent += 12.5;
     }
 
-    if (window.formValues.longBiography != "" && $('body').find('#seminar-long-biography').val().trim() == "") {
-        window.formValues.longBiography = $('body').find('#seminar-long-biography').val().trim();
-        completePercent -= 12.5;
+    if (window.formValues.longBiography != "" && tinymce.editors['seminar-long-biography'].getContent() == "") {
+        window.formValues.longBiography = tinymce.editors['seminar-long-biography'].getContent();
+        window.completePercent -= 12.5;
     }
 
-    return completePercent;
+	animateProgressBar();
+
+    return;
 }
 
-function animateProgressBar(completePercent) {
-    let percent = completePercent;
+function animateProgressBar() {
+    let percent = window.completePercent;
 
     percent = percent + '%';
 
@@ -238,7 +281,7 @@ function processFile(file) {
 
 function showFile(file) {
     let html;
-    let fileLayout;
+    let fileLayout = "";
     let container = $('body').find('[data-target="files-container"]').html();
     let icon = '<i class="far fa-file-powerpoint"></i>';
 
@@ -248,7 +291,7 @@ function showFile(file) {
 
     let fileName = `${file.name}.${file.type}`;
 
-	fileLayout = `<div class="pt-1 pb-1">`;
+	fileLayout += `<div class="pt-1 pb-1">`;
 	fileLayout += `<label>Document Title: ${file.title}</label>`;
     fileLayout += `<div class="input-group mb-3">`;
     fileLayout += `<div class="input-group-prepend">`;

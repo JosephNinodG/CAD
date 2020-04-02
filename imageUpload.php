@@ -1,7 +1,8 @@
 <?php
     $response = [
-        'error' => false,
-        'file'  => [],
+        'error' 	=> false,
+		'errorMsg' 	=> '',
+        'file'  	=> [],
     ];
 
     $acceptableTypes = ['jpg', 'png'];
@@ -10,6 +11,7 @@
 
     if (!in_array($fileType, $acceptableTypes)) {
         $response['error'] = true;
+		$response['errorMsg'] = "Invalid file type submitted. Only .jpg and .png files are permitted.";
         echo json_encode($response);
         return;
     }
