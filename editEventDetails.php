@@ -20,7 +20,7 @@
                 </div>
                 <div class="row pt-3">
                     <div class="col">
-                    	<div class="cover-image" data-target="cover-image-container"></div>
+                    	<div class="cover-image-container" data-target="cover-image-container"></div>
                     </div>
                 </div>
                 <div class="row pt-3">
@@ -139,6 +139,20 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+
+		<div id="lightbox-modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Cover Image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+					<div data-target="lightbox-image"></div>
+				</div>
             </div>
         </div>
     </body>

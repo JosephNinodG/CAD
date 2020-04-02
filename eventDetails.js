@@ -318,7 +318,12 @@ function displayFile(file) {
         'data'      : file.data
     }
 
-	let html = `<img class="img-fluid" src="data:image/png;base64, ${file.data}">`;
+	let html = `<img class="img-fluid cover-image" src="data:image/png;base64, ${file.data}" onclick="openLightbox($(this))">`;
 
 	$('body').find('[data-target="cover-image-container"]').html(html);
+}
+
+function openLightbox($this) {
+	$('body').find('[data-target="lightbox-image"]').html($this);
+	$('body').find('#lightbox-modal').modal('show');
 }

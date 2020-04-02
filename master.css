@@ -11,9 +11,13 @@
 	z-index: 1000;
 }
 
-.cover-image {
+.cover-image-container {
 	max-width: 100%;
 	height: 250px;
 	overflow: hidden;
 	background-color: rgba(196, 196, 196, 0.8);
+}
+
+.cover-image:hover{
+	cursor: pointer;
 }
