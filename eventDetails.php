@@ -10,21 +10,22 @@
     <body>
         <div class="container">
             <form id="details-form" >
-                <div class="row">
+                <div class="row pt-3">
                     <div class="col">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 12.5%;" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100">12.5%</div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row pt-3">
                     <div class="col">
-                        <!-- Image -->
+                    	<div data-target="cover-image-container"></div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row pt-3">
                     <div class="col text-right">
                         <button type="submit" class="btn btn-secondary mb-2" data-target="upload-cover-image">UPLOAD COVER IMAGE</button>
+						<button type="button" class="btn btn-danger mb-2" data-trigger="remove-image" disabled><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
                 <div class="row">
@@ -35,12 +36,12 @@
                             <small id="title-help" class="form-text text-muted">This has already been set for you.</small>
                         </div>
                         <div class="form-group">
-                            <label for="seminar-title">Presentation Type</label>
+                            <label for="seminar-type">Presentation Type</label>
                             <select class="form-control" id="seminar-type">
                                 <option value="">Select</option>
-								<option value="">Seminar</option>
-								<option value="">Video Presentation</option>
-								<option value="">Workshop</option>
+								<option value="Seminar">Seminar</option>
+								<option value="Video Presentation">Video Presentation</option>
+								<option value="Workshop">Workshop</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -76,6 +77,30 @@
             </form>
         </div>
         <!-- Modals -->
+		<div id="cover-image-modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Upload Cover Image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action='post' id="cover-image-form" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input id="cover-image-file" name="cover-image-file" type="file" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark" data-trigger="file-upload">UPLOAD</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <div id="presentation-modal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

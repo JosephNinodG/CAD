@@ -4,7 +4,7 @@
         'file'  => [],
     ];
 
-    $acceptableTypes = ['jpg', 'pdf', 'ppt', 'pptx'];
+    $acceptableTypes = ['jpg', 'png', 'pdf', 'ppt', 'pptx'];
 
     $fileType = pathinfo($_FILES['presentation-file']['name'], PATHINFO_EXTENSION);
 
@@ -24,4 +24,3 @@
 
     echo json_encode($response);
     return;
-?>
