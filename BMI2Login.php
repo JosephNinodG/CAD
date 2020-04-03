@@ -26,6 +26,7 @@
                     <div class="col-xs-0 col-sm-0 col-md-2" id="BlackSpace">                      
                     </div>
                     <div class="col" id="LoginFormArea">
+                    <?php if(isset($_GET['badpass'])){echo "<div class='alert alert-danger' role='alert'>Incorrect login information provided</div>";}?>
                         <form action='login.php' method='post' id="LoginForm">
                             <div class="form-group">
                                 <label id="LoginLabel">Login</label>

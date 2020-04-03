@@ -31,7 +31,7 @@ if($results->success){
 		header("Location: Dashboard.php");
 		exit;
 	}else{
-		echo "Unable to login.  Error: ".$results->data->message;
+		header("Location: BMI2Login.php?badpass=1");
 	}
 }else{
 	echo "Unable to login.  Error: ".$results->error;
