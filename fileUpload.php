@@ -5,13 +5,13 @@
         'file'  	=> [],
     ];
 
-    $acceptableTypes = ['jpg', 'png', 'pdf', 'ppt', 'pptx'];
+    $acceptableTypes = ['jpg', 'jpeg', 'png', 'pdf', 'ppt', 'pptx'];
 
     $fileType = pathinfo($_FILES['presentation-file']['name'], PATHINFO_EXTENSION);
 
     if (!in_array($fileType, $acceptableTypes)) {
         $response['error'] = true;
-		$response['errorMsg'] = "Invalid file type submitted. Only .jpg .png .pdf .ppt and .pptx files are permitted.";
+		$response['errorMsg'] = "Invalid file type submitted. Only .jpg .jpeg .png .pdf .ppt and .pptx files are permitted.";
         echo json_encode($response);
         return;
     }

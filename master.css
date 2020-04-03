@@ -18,6 +18,10 @@
 	background-color: rgba(196, 196, 196, 0.8);
 }
 
-.cover-image:hover{
+.cover-image:hover {
 	cursor: pointer;
+}
+
+.hide {
+	display: none;
 }

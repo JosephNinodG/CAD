@@ -11,7 +11,12 @@
     <body>
         <div class="container">
             <form id="details-form" >
-                <div class="row pt-3 sticky">
+				<div class="row pt-3" data-target="edit-row">
+                    <div class="col text-right">
+                        <button type="submit" class="btn btn-warning mb-2" data-trigger="edit-details">EDIT</button>
+                    </div>
+                </div>
+                <div class="row pt-3 sticky hide" data-target="progress-row">
                     <div class="col">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 12.5%;" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100">12.5%</div>
@@ -20,16 +25,18 @@
                 </div>
                 <div class="row pt-3">
                     <div class="col">
-                    	<div class="cover-image-container" data-target="cover-image-container"></div>
+                    	<div class="cover-image-container" data-target="cover-image-container">
+							<img src="test.png" class="img-fluid cover-image" onclick="openLightbox($(this))">
+						</div>
                     </div>
                 </div>
-                <div class="row pt-3">
+                <div class="row pt-3 hide" data-target="cover-image-row">
                     <div class="col text-right">
                         <button type="submit" class="btn btn-secondary mb-2" data-target="upload-cover-image">UPLOAD COVER IMAGE</button>
 						<button type="button" class="btn btn-danger mb-2" data-trigger="remove-image" disabled><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row pt-3">
                     <div class="col">
                         <div class="form-group">
                             <label for="seminar-title">Title</label>
@@ -38,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <label for="seminar-type">Presentation Type</label>
-                            <select class="form-control" id="seminar-type">
+                            <select class="form-control" id="seminar-type" disabled>
                                 <option value="">Select</option>
 								<option value="Seminar">Seminar</option>
 								<option value="Video Presentation">Video Presentation</option>
@@ -47,29 +54,29 @@
                         </div>
                         <div class="form-group">
                             <label for="seminar-short-description">Short Description</label>
-                            <textarea style="resize: none" id="seminar-short-description" class="form-control textarea-short-description" rows="3"></textarea>
+                            <textarea style="resize: none" id="seminar-short-description" class="form-control textarea-short-description" rows="3" disabled></textarea>
                         </div>
                         <div class="form-group">
                             <label for="seminar-long-description">Long Description</label>
-                            <textarea style="resize: none" id="seminar-long-description" class="form-control textarea-long-description" rows="3"></textarea>
+                            <textarea style="resize: none" id="seminar-long-description" class="form-control textarea-long-description" rows="3" disabled></textarea>
                         </div>
                         <div class="form-group">
                             <label for="seminar-short-biography">Short Biography</label>
-                            <textarea style="resize: none" id="seminar-short-biography" class="form-control textarea-short-biography" rows="3"></textarea>
+                            <textarea style="resize: none" id="seminar-short-biography" class="form-control textarea-short-biography" rows="3" disabled></textarea>
                         </div>
                         <div class="form-group">
                             <label for="seminar-long-biography">Long Biography</label>
-                            <textarea style="resize: none" id="seminar-long-biography" class="form-control textarea-long-biography" rows="3"></textarea>
+                            <textarea style="resize: none" id="seminar-long-biography" class="form-control textarea-long-biography" rows="3" disabled></textarea>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row hide" data-target="presentation-row">
                     <div class="col text-right">
                         <button type="submit" class="btn btn-secondary mb-2" data-target="upload-presentation">UPLOAD PRESENTATION</button>
                     </div>
                 </div>
                 <div class="row" data-target="files-container"></div>
-                <div class="row">
+                <div class="row hide" data-target="save-row">
                     <div class="col text-right">
                         <button type="submit" class="btn btn-warning mb-2" data-target="save-details">SAVE</button>
                         <button type="submit" class="btn btn-dark mb-2" data-target="cancel-details">CANCEL</button>
@@ -92,7 +99,7 @@
 							<div class="alert alert-danger" role="alert" data-target="cover-image-error" style="display: none;"></div>
                             <div class="form-group">
                                 <input id="cover-image-file" name="cover-image-file" type="file" />
-								<small class="form-text text-muted">Note: only .jpg and .png files are permitted.</small>
+								<small class="form-text text-muted">Note: only .jpg .jpeg and .png files are permitted.</small>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -130,7 +137,7 @@
                             </div>
                             <div class="form-group">
                                 <input id="presentation-file" name="presentation-file" type="file" />
-								<small class="form-text text-muted">Note: only .jpg .png .pdf .ppt and .pptx files are permitted.</small>
+								<small class="form-text text-muted">Note: only .jpg .jpeg .png .pdf .ppt and .pptx files are permitted.</small>
                             </div>
                         </div>
                         <div class="modal-footer">

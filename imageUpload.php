@@ -5,13 +5,13 @@
         'file'  	=> [],
     ];
 
-    $acceptableTypes = ['jpg', 'png'];
+    $acceptableTypes = ['jpg', 'jpeg', 'png'];
 
     $fileType = pathinfo($_FILES['cover-image-file']['name'], PATHINFO_EXTENSION);
 
     if (!in_array($fileType, $acceptableTypes)) {
         $response['error'] = true;
-		$response['errorMsg'] = "Invalid file type submitted. Only .jpg and .png files are permitted.";
+		$response['errorMsg'] = "Invalid file type submitted. Only .jpg .jpeg and .png files are permitted.";
         echo json_encode($response);
         return;
     }
