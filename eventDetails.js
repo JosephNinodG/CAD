@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	// Default values
+    window.completePercent = 12.5;
+    window.filesToUpload = {};
+	window.imageToUpload = {};
+	
 	// On click of edit button, change from view to edit
 	$('body').on('click tap', '[data-trigger="edit-details"]', function(event) {
 		event.preventDefault();
@@ -20,16 +25,20 @@ $(document).ready(function() {
 		enableEdit();
 	});
 
-	// Default values
-    window.completePercent = 12.5;
-    window.filesToUpload = {};
-	window.imageToUpload = {};
-
 	// On click of save details, update event details
     $('body').on('click tap', '[data-target="save-details"]', function() {
         event.preventDefault();
 
 		updateEventDetails();
+
+		// Remove the tinymce editors
+		tinymce.remove();
+
+		// Disable edit functionality
+		disableEdit();
+
+		// Scroll back to top of page
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
     });
 
 	// On click of cancel, discard unsaved changes
