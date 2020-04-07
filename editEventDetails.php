@@ -26,7 +26,7 @@
                 <div class="row pt-3">
                     <div class="col">
                     	<div class="cover-image-container" data-target="cover-image-container">
-							<img src="test.png" class="img-fluid cover-image" onclick="openLightbox($(this))">
+							<!-- <img src="test.png" class="img-fluid cover-image" onclick="openLightbox($(this))"> -->
 						</div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="seminar-title">Title</label>
-                            <input type="text" name="seminar-title" class="form-control" id="seminar-title" aria-describedby="title-help" readonly>
+                            <input type="text" data-target="seminar-title" name="seminar-title" class="form-control" id="seminar-title" aria-describedby="title-help" readonly>
                             <small id="title-help" class="form-text text-muted">This has already been set for you.</small>
                         </div>
                         <div class="form-group">

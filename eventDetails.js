@@ -1,9 +1,10 @@
 $(document).ready(function() {
 	// Default values
-    window.completePercent = 12.5;
     window.filesToUpload = {};
 	window.imageToUpload = {};
-	
+
+	initiateView();
+
 	// On click of edit button, change from view to edit
 	$('body').on('click tap', '[data-trigger="edit-details"]', function(event) {
 		event.preventDefault();
@@ -195,6 +196,138 @@ $(document).ready(function() {
 	});
 });
 
+// Initiate the view with event details
+function initiateView() {
+	// Check the URL is valid
+	let id = checkUrl();
+
+	if (id == false) {
+		location.href="seminars.php";
+	}
+
+	$.when(
+		getDetails(id)
+	).done(function(data) {
+		if (data.success == false) {
+			// show error
+		} else {
+			displayView(data.data);
+		}
+	});
+}
+
+// Check URL is a valid event details url
+function checkUrl() {
+	// Get url
+	let url = window.location.href;
+
+	// Split url on ?
+	let params = url.split('?');
+
+	if (params.length < 2) {
+		return false;
+	}
+
+	let vars = params[1].split('=');
+
+	if (vars.length < 2) {
+		return false;
+	}
+
+	let id = vars[1];
+
+	if (isNaN(parseInt(id))) {
+		return false;
+	}
+
+	return id;
+}
+
+// Get event details from API
+function getDetails(id) {
+	return $.ajax({
+        url: 'eventDetailsAPI.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data: { 'id' : id },
+    });
+}
+
+// pre-fill form data
+function displayView(data) {
+	$.when(
+		defaultForm(data)
+	).done(function() {
+		defaultProgressBar();
+	});
+}
+
+function defaultForm(data) {
+	if (data.name) {
+		$('body').find('#seminar-title').val(data.name);
+	}
+
+	// if () {
+	// 	$('body').find('#seminar-type').val();
+	// }
+
+	if (data.short_desc) {
+		$('body').find('#seminar-short-description').val(data.short_desc);
+	}
+
+	if (data.long_desc) {
+		$('body').find('#seminar-long-description').val(data.long_desc);
+	}
+
+	// if () {
+	// 	$('body').find('#seminar-short-biography').val();
+	// }
+
+	if (data.biography) {
+		$('body').find('#seminar-long-biography').val(data.biography);
+	}
+
+	// if () {
+	// 	$('body').find('[data-target="cover-image-container"]').html();
+	// }
+
+	return;
+}
+
+function defaultProgressBar() {
+	window.completePercent = 12.5;
+
+	// If seminar type is set, mark section as complete
+	if ($('body').find('#seminar-type').val().trim() != "") {
+        window.completePercent += 12.5;
+    }
+
+	// If seminar short description is set, mark section as complete
+    if ($('body').find('#seminar-short-description').val().trim() != "") {
+        window.completePercent += 12.5;
+    }
+
+	// If seminar long description is set, mark section as complete
+    if ($('body').find('#seminar-long-description').val().trim() != "") {
+        window.completePercent += 12.5;
+    }
+
+	// If seminar short biography is set, mark section as complete
+    if ($('body').find('#seminar-short-biography').val().trim() != "") {
+        window.completePercent += 12.5;
+    }
+
+	// If seminar long biography is set, mark section as complete
+    if ($('body').find('#seminar-long-biography').val().trim() != "") {
+        window.completePercent += 12.5;
+    }
+
+	// Animate progress change
+	animateProgressBar();
+
+    return;
+}
+
 // Initiate the Tinymce editors on textareas
 function initTinymce() {
 	tinymce.init({
@@ -243,11 +376,11 @@ function initTinymce() {
 
 	// Set the current form values to compare vs existing in order to update percentage
 	window.formValues = {
-		'seminarType'		: $('body').find('#seminar-type').val(),
-        'shortDescription'  : tinymce.editors['seminar-short-description'].getContent(),
-        'longDescription'   : tinymce.editors['seminar-long-description'].getContent(),
-        'shortBiography'    : tinymce.editors['seminar-short-biography'].getContent(),
-        'longBiography'     : tinymce.editors['seminar-long-biography'].getContent(),
+		'seminarType'		: window.startValues.seminarType,
+        'shortDescription'  : window.startValues.shortDescription,
+        'longDescription'   : window.startValues.longDescription,
+        'shortBiography'    : window.startValues.shortBiography,
+        'longBiography'     : window.startValues.longBiography,
     }
 }
 
@@ -264,6 +397,8 @@ function enableEdit() {
 	$('body').find('[data-target="cover-image-row"]').show();
 	$('body').find('[data-target="presentation-row"]').show();
 	$('body').find('[data-target="save-row"]').show();
+
+	defaultProgressBar();
 }
 
 // Change view from 'Edit' to 'View'
