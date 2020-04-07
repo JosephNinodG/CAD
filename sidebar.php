@@ -59,10 +59,10 @@ body {
   <a href="#Profile">Profile</a>
   <a href="#Logout">Logout</a>
 </div>
-<div class="main" id="content">
-  <br/>
-  <br/>
-<?php include("seminars.php"); ?>
-</div>
+<div class="main" id="content"></div>
 </body>
+<footer>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="main.js" type="text/javascript"></script>
+</footer>
 </html>
