@@ -23,7 +23,7 @@ if ($id == '') {
 
 // API URL for getting event details
 $url = 'https://reg.bookmein2.com/api/checkinapi.php';
-$urlstring = '?action=getlocationdetails&apikey='.$apikey.'&locationid='.$id;
+$urlstring = '?action=getlocationdetails&apikey='.$apikey.'&locationid='.$id.'&includefiles=1';
 $url = $url.$urlstring;
 
 // Valid id so try details api call
@@ -55,8 +55,10 @@ if ($details->success == false) {
 $data['start_time'] = date('d/m/Y H:i', strtotime($details->data->location->start_time));
 $data['end_time'] = date('d/m/Y H:i', strtotime($details->data->location->end_time));
 $data['name'] = $details->data->location->name;
+$data['type'] = $details->data->location->presentation_type;
 $data['short_desc'] = $details->data->location->short_desc;
 $data['long_desc'] = $details->data->location->description;
+$data['files'] = $details->data->location->files;
 
 $response['data'] = $data;
 
@@ -91,7 +93,8 @@ if ($profile->success == false) {
 	return;
 }
 
-$data['biography'] = $profile->data->biography;
+$data['short_bio'] = $profile->data->short_bio;
+$data['long_bio'] = $profile->data->biography;
 
 $response['data'] = $data;
 echo json_encode($response);

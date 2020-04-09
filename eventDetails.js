@@ -267,9 +267,9 @@ function defaultForm(data) {
 		$('body').find('#seminar-title').val(data.name);
 	}
 
-	// if () {
-	// 	$('body').find('#seminar-type').val();
-	// }
+	if (data.type) {
+		$('body').find('#seminar-type').val(data.type);
+	}
 
 	if (data.short_desc) {
 		$('body').find('#seminar-short-description').val(data.short_desc);
@@ -279,12 +279,12 @@ function defaultForm(data) {
 		$('body').find('#seminar-long-description').val(data.long_desc);
 	}
 
-	// if () {
-	// 	$('body').find('#seminar-short-biography').val();
-	// }
+	if (data.short_bio) {
+		$('body').find('#seminar-short-biography').val(data.short_bio);
+	}
 
-	if (data.biography) {
-		$('body').find('#seminar-long-biography').val(data.biography);
+	if (data.long_bio) {
+		$('body').find('#seminar-long-biography').val(data.long_bio);
 	}
 
 	// if () {
