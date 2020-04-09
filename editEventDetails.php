@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<div class="sidenav">
-		  <a href="seminars.php" id="nav-dash">Dashboard</a>
+		  <a href="seminars.php">Dashboard</a>
 		  <a href="#Profile">Profile</a>
 		  <a href="logout.php">Logout</a>
 		</div>

@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<div class="sidenav">
-		  <a href="#Dashboard" id="nav-dash">Dashboard</a>
+		  <a href="#Dashboard">Dashboard</a>
 		  <a href="#Profile">Profile</a>
 		  <a href="#Logout">Logout</a>
 		</div>

@@ -1,5 +1,9 @@
 html, body {height: 100%; margin:0px !important;}
 
+body {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
 @media (max-height: 415px) {
     header {
         display: none;
@@ -15,7 +19,6 @@ html, body {height: 100%; margin:0px !important;}
         padding-bottom: 0 !important;
         top: 0 !important;
         bottom: 0 !important;
-
     }
 
     .container {
@@ -48,7 +51,6 @@ header{
 #content {
     padding-top: 50px;
     padding-bottom: 50px;
-    background-color:#181A1C;
     position: fixed;
     width:100%;
     top: 100px;
@@ -67,11 +69,6 @@ header{
 
 #BlackSpace {
     text-align: center;
-    background-color: #181A1C;
-}
-
-#LoginFormArea {
-    background-color: #181A1C;
 }
 
 #LoginForm {

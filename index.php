@@ -7,7 +7,7 @@
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="BMI2LoginStyleSheet.css">
 </head>
-<body style="background-color: #181A1C">
+<body>
     <div class="wrapper">
         <header>
             <div id="LogoDiv">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-0 col-sm-0 col-md-2" id="BlackSpace">                      
+                    <div class="col-xs-0 col-sm-0 col-md-2" id="BlackSpace">
                     </div>
                     <div class="col" id="LoginFormArea">
                         <form action='login.php' method='post' id="LoginForm">
@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="username" id="labelStyle">Username</label>
-                                <input type="text" name="username" class="form-control" id="username" placeholder="Username"> 
+                                <input type="text" name="username" class="form-control" id="username" placeholder="Username">
                                 <!-- change to type="email" -->
                             </div>
                             <div class="form-group">
