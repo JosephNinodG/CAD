@@ -30,6 +30,8 @@ $(document).ready(function() {
     $('body').on('click tap', '[data-target="save-details"]', function() {
         event.preventDefault();
 
+		saveFormValues();
+
 		updateEventDetails();
 
 		// Remove the tinymce editors
@@ -203,7 +205,10 @@ function initiateView() {
 
 	if (id == false) {
 		location.href="seminars.php";
+		return;
 	}
+
+	window.eventId = id;
 
 	$.when(
 		getDetails(id)
@@ -426,8 +431,36 @@ function revertFields() {
 	$('body').find('[data-target="cover-image-container"]').html(window.startValues.coverImage);
 }
 
+function saveFormValues() {
+	window.formValues.seminarType = $('body').find('#seminar-type').val().trim();
+	window.formValues.shortDescription = tinymce.editors['seminar-short-description'].getContent();
+	window.formValues.longDescription = tinymce.editors['seminar-long-description'].getContent();
+	window.formValues.shortBiography = tinymce.editors['seminar-short-biography'].getContent();
+	window.formValues.longBiography = tinymce.editors['seminar-long-biography'].getContent();
+}
+
 function updateEventDetails() {
-	// submit data via API
+	$.when(
+		attemptSave()
+	).done(function(data) {
+		console.log(data);
+	});
+}
+
+function attemptSave() {
+	return $.ajax({
+        url: 'saveDetailsAPI.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+			'id': window.eventId,
+			'type': window.formValues.seminarType,
+			'short_desc': window.formValues.shortDescription,
+			'long_desc': window.formValues.longDescription,
+			'short_bio': window.formValues.shortBiography,
+			'long_bio': window.formValues.longBiography,
+		},
+    });
 }
 
 // Ajax call to do presentation file upload
