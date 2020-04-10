@@ -15,9 +15,9 @@ $vars = json_decode($_POST['data']);
 // Remove new lines that will break api call
 $id = $vars->id;
 $type = $vars->type;
-$short_desc = str_replace(array("\r", "\n"), '', $vars->short_desc);
+$short_desc = substr(str_replace(array("\r", "\n"), '', $vars->short_desc), 0, 100); // can only be 100 characters long
 $long_desc = str_replace(array("\r", "\n"), '', $vars->long_desc);
-$short_bio = str_replace(array("\r", "\n"), '', $vars->short_bio);
+$short_bio = substr(str_replace(array("\r", "\n"), '', $vars->short_bio), 0, 255); // can only be 255 characters long
 $long_bio = str_replace(array("\r", "\n"), '', $vars->long_bio);
 
 // Check id

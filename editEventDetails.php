@@ -61,7 +61,8 @@
 	                        </div>
 	                        <div class="form-group">
 	                            <label for="seminar-short-description">Short Description</label>
-	                            <textarea style="resize: none" id="seminar-short-description" class="form-control textarea-short-description" rows="3" disabled></textarea>
+	                            <textarea style="resize: none" id="seminar-short-description" class="form-control textarea-short-description" rows="2" maxlength="100" aria-describedby="short-description-help" disabled></textarea>
+								<small id="short-description-help" class="form-text text-muted">Max 100 characters. Any additional characters will be stripped.  <span data-target="desc-current-chars">0/100 characters</span></small>
 	                        </div>
 	                        <div class="form-group">
 	                            <label for="seminar-long-description">Long Description</label>
@@ -69,7 +70,8 @@
 	                        </div>
 	                        <div class="form-group">
 	                            <label for="seminar-short-biography">Short Biography</label>
-	                            <textarea style="resize: none" id="seminar-short-biography" class="form-control textarea-short-biography" rows="3" disabled></textarea>
+	                            <textarea style="resize: none" id="seminar-short-biography" class="form-control textarea-short-biography" rows="2" maxlength="255" aria-describedby="short-biography-help" disabled></textarea>
+								<small id="short-biography-help" class="form-text text-muted">Max 255 characters. Any additional characters will be stripped. <span data-target="bio-current-chars">0/255 characters</span></small>
 	                        </div>
 	                        <div class="form-group">
 	                            <label for="seminar-long-biography">Long Biography</label>

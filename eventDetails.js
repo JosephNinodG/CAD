@@ -294,6 +294,18 @@ function defaultForm(data) {
 
 	initReadonlyTinymce();
 
+	let files = data.files;
+
+	if (files) {
+		$.each(files, function(index, file) {
+			file.title = file.title != null ? file.title : 'N/A';
+			file.name = file.filename;
+			file.purpose = file.description != null ? file.description : 'N/A';
+			file.type = file.filetype.includes('image') ? 'png' : (file.filetype.includes('pdf') ? 'pdf' : 'ppt'); // hardset pdf vs img vs presentation
+			showFile(file);
+		});
+	}
+
 	return;
 }
 
@@ -344,6 +356,16 @@ function initTinymce() {
 			editor.on('change', function(e) {
 				updateProgressBar();
 			});
+
+			editor.on('keyup', function() {
+				$('body').find('[data-target="desc-current-chars"]').html(tinymce.editors['seminar-short-description'].getContent().length + '/100 characters');
+
+				if (tinymce.editors['seminar-short-description'].getContent().length > 100) {
+					$('body').find('[data-target="desc-current-chars"]').css('color', 'red');
+				} else {
+					$('body').find('[data-target="desc-current-chars"]').css('color', '#6c757d');
+				}
+			});
 		},
 
 		menubar:false,
@@ -371,6 +393,16 @@ function initTinymce() {
 		init_instance_callback: function(editor) {
 			editor.on('change', function(e) {
 				updateProgressBar();
+			});
+
+			editor.on('keyup', function() {
+				$('body').find('[data-target="bio-current-chars"]').html(tinymce.editors['seminar-short-biography'].getContent().length + '/255 characters');
+
+				if (tinymce.editors['seminar-short-biography'].getContent().length > 255) {
+					$('body').find('[data-target="bio-current-chars"]').css('color', 'red');
+				} else {
+					$('body').find('[data-target="bio-current-chars"]').css('color', '#6c757d');
+				}
 			});
 		},
 
@@ -477,6 +509,9 @@ function initReadonlyTinymce() {
 		statusbar: false,
 		toolbar:false
     });
+
+	$('body').find('[data-target="desc-current-chars"]').html($('body').find('#seminar-short-description').val().length + '/100 characters');
+	$('body').find('[data-target="bio-current-chars"]').html($('body').find('#seminar-short-biography').val().length + '/255 characters');
 }
 
 // Change view from 'View' to 'Edit'
@@ -726,8 +761,13 @@ function showFile(file) {
 	// Default presentation icon
     let icon = '<i class="far fa-file-powerpoint"></i>';
 
+	// If file is a pdf, change icon
+	if (file.type == 'pdf') {
+		icon = '<i class="fas fa-file-pdf"></i>';
+	}
+
 	// If file is an image, change icon
-    if (file.type == 'jpg' || file.type == 'png') {
+    if (file.type == 'jpg' || file.type == 'jpeg' || file.type == 'png') {
         icon = '<i class="far fa-file-image"></i>';
     }
 
