@@ -12,6 +12,7 @@
 		</div>
 		<div class="main" id="content">
 			<?php
+			//setup api session
 			session_start();
 			$apikey = $_SESSION['apikey'];
 			if(!isset($apikey) || $apikey==''){
@@ -19,11 +20,11 @@
 				exit;
 			}
 			$apiurl = "https://reg.bookmein2.com/api/checkinapi.php";
-
+			//create two calls, one to pull all locations and the other to pull the conference name
 			$data = array('apikey'=>$apikey, 'action' => "getlocationlist");
 			$conferenceNameData = array('apikey'=>$apikey, 'action' => "getconferencename");
 			$ch = curl_init();
-
+			//first pull the conference name
 			$params = http_build_query($data);
 			$paramsConfName = http_build_query($conferenceNameData);
 			$getUrl = $apiurl."?".$params;
@@ -44,7 +45,7 @@
 
 			$confNameArray = array();
 			$confNameSuccess = true;
-
+			//if the api call is successful, create the confName variable
 			if($confNameResults->success){
 					$confName=$confNameResults->data;
 
@@ -53,7 +54,7 @@
 				$confNameSuccess = false;
 				$error = $confNameResults->error;
 			}
-
+			//reinitialise another api call for the location list/details
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $getUrl);
 
@@ -70,7 +71,7 @@
 
 			$seminars = array();
 			$success = true;
-
+			//if successful, create array of seminars and their details
 			if($results->success){
 				foreach($results->data->list as $seminar){
 					$seminars[]  = $seminar;
@@ -84,10 +85,11 @@
 			<div class="container-fluid">
 			<?php
 			if($success){
+				//use a counter to tally the total seminars being shown
 				$seminarCount = 0;
 				foreach($seminars as $seminar){
 					if ($seminar->event_type=="Seminar") {
-
+						//if the event is a seminar, create a box containing a variety of details for each
 					echo "<div class='seminarBox' data-trigger='view-event' data-id='$seminar->id'>";
 					echo "<div class='row'>";
 					echo "<div class='col-5'>$confName</div>";
@@ -98,6 +100,7 @@
 					echo "<div class='col-sm'>Time: $startTime - $endTime</div>";
 
 					//echo "<div class='col-sm'>End: $endTime</div>";
+					//percentage complete to be pulled using the edit event details page.
 					echo "<div class='col-sm percentageComp' >0% complete! </div>";
 					echo "</div>";
 					echo "<hr/>";
@@ -109,17 +112,20 @@
 					echo "</div>";
 
 					echo "<br/>";
-
+					//increase the seminar tally now that a new box has been added
 					$seminarCount++;
+
 					}
 				}
 
 			}else{
+				//if the api call was unsuccessful, throw an error
 				echo "<div class='row'>Unable to get results: $error</div>";
 			}
-
+			//end the container with the updated seminar count
 			echo ("<div class='row'> $seminarCount locations found</div>");
 			?>
+			<!-- Include section for feedback that can be updated by certain errors -->
 			<div id='feedback'>
 
 			</div><!-- This closes the feedback div -->
@@ -128,6 +134,7 @@
 		</div>
 	</body>
 	<footer>
+		<!-- Include the necessary dependancies -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
