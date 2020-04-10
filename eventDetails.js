@@ -9,16 +9,6 @@ $(document).ready(function() {
 	$('body').on('click tap', '[data-trigger="edit-details"]', function(event) {
 		event.preventDefault();
 
-		// How the form starts to revert back to on cancel
-		window.startValues = {
-			'coverImage'		: $('body').find('[data-target="cover-image-container"]').html(),
-			'seminarType'		: $('body').find('#seminar-type').val(),
-	        'shortDescription'  : $('body').find('#seminar-short-description').val(),
-	        'longDescription'   : $('body').find('#seminar-long-description').val(),
-	        'shortBiography'    : $('body').find('#seminar-short-biography').val(),
-	        'longBiography'     : $('body').find('#seminar-long-biography').val(),
-	    }
-
 		// Initiate editors on textareas
 		initTinymce();
 
@@ -36,6 +26,8 @@ $(document).ready(function() {
 
 		// Remove the tinymce editors
 		tinymce.remove();
+
+		initReadonlyTinymce();
 
 		// Disable edit functionality
 		disableEdit();
@@ -56,6 +48,8 @@ $(document).ready(function() {
 
 		// Revert unsaved changes
 		revertFields();
+
+		initReadonlyTinymce();
 
 		// Scroll back to top of page
 		$('html, body').animate({ scrollTop: 0 }, 'slow');
@@ -296,6 +290,8 @@ function defaultForm(data) {
 	// 	$('body').find('[data-target="cover-image-container"]').html();
 	// }
 
+	initReadonlyTinymce();
+
 	return;
 }
 
@@ -335,6 +331,9 @@ function defaultProgressBar() {
 
 // Initiate the Tinymce editors on textareas
 function initTinymce() {
+	// Remove the readonly tinymce editors
+	tinymce.remove();
+
 	tinymce.init({
 		selector: '.textarea-short-description',
 
@@ -343,7 +342,10 @@ function initTinymce() {
 			editor.on('change', function(e) {
 				updateProgressBar();
 			});
-		}
+		},
+
+		menubar:false,
+		statusbar: false,
     });
 
 	tinymce.init({
@@ -354,7 +356,10 @@ function initTinymce() {
 			editor.on('change', function(e) {
 				updateProgressBar();
 			});
-		}
+		},
+
+		menubar:false,
+		statusbar: false,
     });
 
 	tinymce.init({
@@ -365,7 +370,10 @@ function initTinymce() {
 			editor.on('change', function(e) {
 				updateProgressBar();
 			});
-		}
+		},
+
+		menubar:false,
+		statusbar: false,
     });
 
 	tinymce.init({
@@ -376,7 +384,10 @@ function initTinymce() {
 			editor.on('change', function(e) {
 				updateProgressBar();
 			});
-		}
+		},
+
+		menubar:false,
+		statusbar: false,
     });
 
 	// Set the current form values to compare vs existing in order to update percentage
@@ -387,6 +398,83 @@ function initTinymce() {
         'shortBiography'    : window.startValues.shortBiography,
         'longBiography'     : window.startValues.longBiography,
     }
+}
+
+// Initiate the readonly Tinymce editors on textareas
+function initReadonlyTinymce() {
+	// How the form starts to revert back to on cancel
+	window.startValues = {
+		'coverImage'		: $('body').find('[data-target="cover-image-container"]').html(),
+		'seminarType'		: $('body').find('#seminar-type').val(),
+		'shortDescription'  : $('body').find('#seminar-short-description').val(),
+		'longDescription'   : $('body').find('#seminar-long-description').val(),
+		'shortBiography'    : $('body').find('#seminar-short-biography').val(),
+		'longBiography'     : $('body').find('#seminar-long-biography').val(),
+	}
+
+	tinymce.init({
+		selector: '.textarea-short-description',
+
+		// On change, update progress bar
+		init_instance_callback: function(editor) {
+			editor.on('change', function(e) {
+				updateProgressBar();
+			});
+		},
+
+		readonly: 1,
+		menubar:false,
+		statusbar: false,
+		toolbar:false
+    });
+
+	tinymce.init({
+		selector: '.textarea-long-description',
+
+		// On change, update progress bar
+		init_instance_callback: function(editor) {
+			editor.on('change', function(e) {
+				updateProgressBar();
+			});
+		},
+
+		readonly: 1,
+		menubar:false,
+		statusbar: false,
+		toolbar:false
+    });
+
+	tinymce.init({
+		selector: '.textarea-short-biography',
+
+		// On change, update progress bar
+		init_instance_callback: function(editor) {
+			editor.on('change', function(e) {
+				updateProgressBar();
+			});
+		},
+
+		readonly: 1,
+		menubar:false,
+		statusbar: false,
+		toolbar:false
+    });
+
+	tinymce.init({
+		selector: '.textarea-long-biography',
+
+		// On change, update progress bar
+		init_instance_callback: function(editor) {
+			editor.on('change', function(e) {
+				updateProgressBar();
+			});
+		},
+
+		readonly: 1,
+		menubar:false,
+		statusbar: false,
+		toolbar:false
+    });
 }
 
 // Change view from 'View' to 'Edit'
@@ -443,23 +531,25 @@ function updateEventDetails() {
 	$.when(
 		attemptSave()
 	).done(function(data) {
-		console.log(data);
+		// error handling
 	});
 }
 
 function attemptSave() {
+	let data = JSON.stringify({
+		'id': window.eventId,
+		'type': window.formValues.seminarType,
+		'short_desc': window.formValues.shortDescription,
+		'long_desc': window.formValues.longDescription,
+		'short_bio': window.formValues.shortBiography,
+		'long_bio': window.formValues.longBiography,
+	});
+
 	return $.ajax({
         url: 'saveDetailsAPI.php',
         type: 'POST',
         dataType: 'JSON',
-        data: {
-			'id': window.eventId,
-			'type': window.formValues.seminarType,
-			'short_desc': window.formValues.shortDescription,
-			'long_desc': window.formValues.longDescription,
-			'short_bio': window.formValues.shortBiography,
-			'long_bio': window.formValues.longBiography,
-		},
+        data: { data },
     });
 }
 
