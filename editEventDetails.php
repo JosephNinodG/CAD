@@ -132,21 +132,22 @@
 								<div class="alert alert-danger" role="alert" data-target="presentation-error" style="display: none;"></div>
 	                            <div class="form-group">
 	                                <label for="presentation-title">Document Title</label>
-	                                <input type="text" class="form-control" id="presentation-title" name="presentation-title" required>
+	                                <input type="text" class="form-control" id="presentation-title" name="presentation-title">
 	                            </div>
 	                            <div class="form-group">
 	                                <label for="presentation-name">File Name</label>
-	                                <input type="text" class="form-control" id="presentation-name" name="presentation-name" required>
+	                                <input type="text" class="form-control" id="presentation-name" name="presentation-name">
 	                            </div>
 	                            <div class="form-group">
 	                                <label for="presentation-purpose">File Purpose</label>
-	                                <input type="text" class="form-control" id="presentation-purpose" name="presentation-purpose" required>
+	                                <input type="text" class="form-control" id="presentation-purpose" name="presentation-purpose">
 	                            </div>
 	                            <div class="form-group">
 	                                <input id="presentation-file" name="presentation-file" type="file" />
 									<small class="form-text text-muted">Note: only .jpg .jpeg .png .pdf .ppt and .pptx files are permitted.</small>
 	                            </div>
 	                        </div>
+							<input type="text" name="post-id" value="" data-target="presentation-post-id" hidden>
 	                        <div class="modal-footer">
 	                            <button type="submit" class="btn btn-dark" data-trigger="file-upload">UPLOAD</button>
 	                            <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>

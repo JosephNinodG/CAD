@@ -204,6 +204,8 @@ function initiateView() {
 
 	window.eventId = id;
 
+	$('body').find('[data-target="presentation-post-id"]').val(window.eventId);
+
 	$.when(
 		getDetails(id)
 	).done(function(data) {
@@ -730,7 +732,7 @@ function showFile(file) {
     }
 
 	// Set the filename
-    let fileName = `${file.name}.${file.type}`;
+    let fileName = `${file.name}`;
 
 	// Format the html for the file
 	fileLayout += `<div class="pt-1 pb-1">`;
@@ -740,9 +742,9 @@ function showFile(file) {
     fileLayout += `<span class="input-group-text" id="icon-for-${fileName}">${icon}</span>`;
     fileLayout += `</div>`;
     fileLayout += `<input type="text" class="form-control" aria-label="Username" aria-describedby="icon-for-${fileName}" readonly value="${fileName}">`;
-    fileLayout += `<div class="input-group-append">`;
-    fileLayout += `<button class="btn btn-danger" type="button" data-trigger="remove-file" data-file="${file.title}"><i class="fas fa-trash"></i></button>`;
-    fileLayout += `</div>`;
+    // fileLayout += `<div class="input-group-append">`;
+    // fileLayout += `<button class="btn btn-danger" type="button" data-trigger="remove-file" data-file="${file.title}"><i class="fas fa-trash"></i></button>`;
+    // fileLayout += `</div>`;
     fileLayout += `</div>`;
 	fileLayout += `<small class="form-text text-muted">File Purpose: ${file.purpose}</small>`;
 	fileLayout += `</div>`;

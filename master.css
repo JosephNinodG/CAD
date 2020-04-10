@@ -30,6 +30,10 @@ label {
 	color: white;
 }
 
+.modal label {
+	color: black;
+}
+
 body {
   font-family: "Lato", sans-serif;
   background-color: rgba(0, 0, 0, 0.8);
