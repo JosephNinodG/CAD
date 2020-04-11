@@ -1,3 +1,15 @@
+<?php
+	// setup session
+	session_start();
+
+	if (!isset($_SESSION['apikey'])) {
+		header("Location: index.php");
+		exit();
+	}
+
+	$apikey = $_SESSION['apikey'];
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,13 +24,6 @@
 		</div>
 		<div class="main" id="content">
 			<?php
-			//setup api session
-			session_start();
-			$apikey = $_SESSION['apikey'];
-			if(!isset($apikey) || $apikey==''){
-				//header("Location: .");
-				exit;
-			}
 			$apiurl = "https://reg.bookmein2.com/api/checkinapi.php";
 			//create two calls, one to pull all locations and the other to pull the conference name
 			$data = array('apikey'=>$apikey, 'action' => "getlocationlist");

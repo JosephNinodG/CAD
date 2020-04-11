@@ -1,8 +1,5 @@
 <?php
 
-session_start();
-$apikey = $_SESSION['apikey'];
-
 // Default response
 $response = [
 	'error' 	=> false,
@@ -10,12 +7,17 @@ $response = [
 	'data'  	=> [],
 ];
 
-if (empty($apikey)) {
+// setup session
+session_start();
+
+if (!isset($_SESSION['apikey'])) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'No valid apikey found';
 	echo json_encode($response);
 	return;
 }
+
+$apikey = $_SESSION['apikey'];
 
 // Set id
 $id = $_POST['id'];
@@ -59,8 +61,8 @@ if ($details->success == false) {
 	return;
 }
 
-$data['start_time'] = date('d/m/Y H:i', strtotime($details->data->location->start_time));
-$data['end_time'] = date('d/m/Y H:i', strtotime($details->data->location->end_time));
+$data['start_time'] = date('d/m/Y g:i A', strtotime($details->data->location->start_time));
+$data['end_time'] = date('d/m/Y g:i A', strtotime($details->data->location->end_time));
 $data['name'] = $details->data->location->name;
 $data['type'] = $details->data->location->presentation_type;
 $data['short_desc'] = $details->data->location->short_desc;

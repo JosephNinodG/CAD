@@ -1,13 +1,3 @@
-<?php
-	session_start();
-	$apikey = $_SESSION['apikey'];
-
-	if (empty($apikey)) {
-		header("Location: index.php");
-		exit();
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -55,6 +45,22 @@
 	                </div>
 	                <div class="row pt-3">
 	                    <div class="col">
+							<div class="row pt-3">
+								<div class="col-sm-3">
+									<div class="form-group">
+			                            <label for="seminar-start-time">Start Time</label>
+			                            <input type="text" data-target="seminar-start-time" name="seminar-start-time" class="form-control" id="seminar-start-time" aria-describedby="start-time-help" readonly>
+			                            <small id="start-time-help" class="form-text text-muted">This has already been set for you.</small>
+			                        </div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+			                            <label for="seminar-end-time">End Time</label>
+			                            <input type="text" data-target="seminar-end-time" name="seminar-end-time" class="form-control" id="seminar-end-time" aria-describedby="end-time-help" readonly>
+			                            <small id="end-time-help" class="form-text text-muted">This has already been set for you.</small>
+			                        </div>
+								</div>
+							</div>
 	                        <div class="form-group">
 	                            <label for="seminar-title">Title</label>
 	                            <input type="text" data-target="seminar-title" name="seminar-title" class="form-control" id="seminar-title" aria-describedby="title-help" readonly>

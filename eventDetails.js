@@ -208,8 +208,10 @@ function initiateView() {
 	$.when(
 		getDetails(id)
 	).done(function(data) {
-		if (data.success == false) {
-			// show error
+		if (data.error == true) {
+			if (data.errorMsg == 'No valid apikey found') {
+				window.location.href = 'index.php';
+			}
 		} else {
 			displayView(data.data);
 		}
@@ -263,6 +265,14 @@ function displayView(data) {
 }
 
 function defaultForm(data) {
+	if (data.start_time) {
+		$('body').find('#seminar-start-time').val(data.start_time);
+	}
+
+	if (data.end_time) {
+		$('body').find('#seminar-end-time').val(data.end_time);
+	}
+
 	if (data.name) {
 		$('body').find('#seminar-title').val(data.name);
 	}
