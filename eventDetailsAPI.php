@@ -10,6 +10,13 @@ $response = [
 	'data'  	=> [],
 ];
 
+if (empty($apikey)) {
+	$response['error'] = true;
+	$response['errorMsg'] = 'No valid apikey found';
+	echo json_encode($response);
+	return;
+}
+
 // Set id
 $id = $_POST['id'];
 

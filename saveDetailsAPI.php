@@ -28,17 +28,23 @@ if ($id == '') {
 	return;
 }
 
-// API URL for setting event details
-$url = 'https://reg.bookmein2.com/api/checkinapi.php'.'?action=editlocation&apikey='.$apikey.'&locationid='.$id.'&short_desc='.$short_desc.'&description='.$long_desc.'&presentation_type='.$type;
+$data = array(
+	'action' => 'editlocation',
+	'apikey' => $apikey,
+	'locationid' => $id,
+	'short_desc' => $short_desc,
+	'description' => $long_desc,
+	'presentation_type' => $type,
+);
 
-// Valid id so try details api call
-$ch = curl_init();
+$ch = curl_init('https://reg.bookmein2.com/api/checkinapi.php');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
+// execute
 $details = curl_exec($ch);
 
+// close the connection
 curl_close($ch);
 
 if (!$details) {
@@ -67,14 +73,21 @@ if ($details->success == false) {
 // API URL for setting profile details
 $url = 'https://reg.bookmein2.com/api/checkinapi.php'.'?action=updateprofile&apikey='.$apikey.'&short_bio='.$short_bio.'&bio='.$long_bio;
 
-// Valid id so try details api call
-$ch = curl_init();
+$data = array(
+	'action' => 'updateprofile',
+	'apikey' => $apikey,
+	'short_bio' => $short_bio,
+	'bio' => $long_bio,
+);
 
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$ch = curl_init('https://reg.bookmein2.com/api/checkinapi.php');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
+// execute
 $profile = curl_exec($ch);
 
+// close the connection
 curl_close($ch);
 
 if (!$profile) {

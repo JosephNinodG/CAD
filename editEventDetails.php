@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	$apikey = $_SESSION['apikey'];
+
+	if (empty($apikey)) {
+		header("Location: index.php");
+		exit();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>

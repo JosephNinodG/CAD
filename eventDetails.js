@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	// Default values
-    window.filesToUpload = {};
 	window.imageToUpload = {};
 
 	initiateView();
@@ -294,14 +293,24 @@ function defaultForm(data) {
 
 	initReadonlyTinymce();
 
+	window.filesToUpload = {};
+
 	let files = data.files;
 
 	if (files) {
 		$.each(files, function(index, file) {
-			file.title = file.title != null ? file.title : 'N/A';
+			file.title = file.title != null && file.title != '' ? file.title : 'N/A';
 			file.name = file.filename;
-			file.purpose = file.description != null ? file.description : 'N/A';
+			file.purpose = file.description != null && file.description != '' ? file.description : 'N/A';
 			file.type = file.filetype.includes('image') ? 'png' : (file.filetype.includes('pdf') ? 'pdf' : 'ppt'); // hardset pdf vs img vs presentation
+
+			window.filesToUpload[file.name] = {
+		        'title'     : file.title,
+		        'name'      : file.name,
+		        'purpose'   : file.purpose,
+		        // 'data'      : file.data
+		    }
+
 			showFile(file);
 		});
 	}
@@ -336,6 +345,10 @@ function defaultProgressBar() {
     if ($('body').find('#seminar-long-biography').val().trim() != "") {
         window.completePercent += 12.5;
     }
+
+	if (Object.keys(window.filesToUpload).length > 0) {
+		window.completePercent += 12.5;
+	}
 
 	// Animate progress change
 	animateProgressBar();
@@ -738,7 +751,7 @@ function animateProgressBar() {
 // Process and display presentation
 function processFile(file) {
 	// Extract file upload results and add to file object
-    window.filesToUpload[file.title] = {
+    window.filesToUpload[file.name] = {
         'title'     : file.title,
         'name'      : file.name,
         'purpose'   : file.purpose,
@@ -754,6 +767,9 @@ function showFile(file) {
 	// Initiate variables
     let html;
     let fileLayout = "";
+
+	file.title = file.title != null && file.title != '' ? file.title : 'N/A';
+	file.description = file.description != null && file.description != '' ? file.description : 'N/A';
 
 	// Get html content of files container
     let container = $('body').find('[data-target="files-container"]').html();
@@ -783,7 +799,7 @@ function showFile(file) {
     fileLayout += `</div>`;
     fileLayout += `<input type="text" class="form-control" aria-label="Username" aria-describedby="icon-for-${fileName}" readonly value="${fileName}">`;
     // fileLayout += `<div class="input-group-append">`;
-    // fileLayout += `<button class="btn btn-danger" type="button" data-trigger="remove-file" data-file="${file.title}"><i class="fas fa-trash"></i></button>`;
+    // fileLayout += `<button class="btn btn-danger" type="button" data-trigger="remove-file" data-file="${file.name}"><i class="fas fa-trash"></i></button>`;
     // fileLayout += `</div>`;
     fileLayout += `</div>`;
 	fileLayout += `<small class="form-text text-muted">File Purpose: ${file.purpose}</small>`;
