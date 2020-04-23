@@ -29,9 +29,11 @@
 		#edit{position:relative;top:20px;height:20px;right:175px;}
 		
 		#detail{
-		text-align:center
+		text-align:center;
+		margin:0 auto;
+		width:905px;
 		}
-        body{position:relative;top:125px;}
+        body{text-align:center;position:relative;top:125px;}
       
         
     </style>
@@ -55,34 +57,60 @@
      
 	
 	<div id="detail">
-
+	<div style="width:50%;float:left;">
+	<p>First Name</p>
+     <p><input name="" type="text" disabled="disabled" value="First Name" style="width:450px;height:30px;"/> </p>
+	 <p>Phone Number</p>
+	 <p><input name="" type="text" disabled="disabled" value="Phone Number" style="width:450px;height:30px;"/></p>
+	</div>
+	
+	<div style="width:50%;float:right;">
+	<p>Family Name</p>
 	<p>
-    <input name="" type="text" disabled="disabled" value="First Name" style="width:450px;height:30px;"/>  <input name="" type="text" disabled="disabled" value="Family Name"style="width:450px;height:30px;"/>
+     <input name="" type="text" disabled="disabled" value="Family Name"style="width:450px;height:30px;"/>
 	</p>
-
+	<p>Email Address</p>
     <p>
-	<input name="" type="text" disabled="disabled" value="Phone Number" style="width:450px;height:30px;"/>  <input name="" type="text" disabled="disabled" value="Email Address"style="width:450px;height:30px;"/>
+	  <input name="" type="text" disabled="disabled" value="Email Address"style="width:450px;height:30px;"/>
     </p>
+	</div>
 
+	<p style="float:left;">Default Short Biogrphy</p>
 	<p>
-    <input name="" type="text" disabled="disabled" value="Default Short Biogrphy" style="width:905px;height:60px;"/> 
+    <textarea name="" type="text" disabled="disabled" style="width:905px;height:60px;">Default Short Biogrphy</textarea> 
 	</p>
 
+	<p style="float:left;">Default Long Biogrphy</p>
 	<p>
-	<input name="" type="text" disabled="disabled" value="Default Long Biogrphy" style="width:905px;height:90px;"/> 
+	<textarea name="" type="text" disabled="disabled" style="width:905px;height:90px;">Default Long Biogrphy</textarea>  
 	</p>
 
+	<p style="float:left;">Website</p>
 	<p>
     <input name="" type="text" disabled="disabled" value="Website" style="width:905px;height:30px;"/> 
 	</p>
 	
+	<div style="width:50%;float:left;">
+	<p>Facebook</p>
 	<p>
-	<input name="" type="text" disabled="disabled" value="Facebook" style="width:450px;height:30px;"/>  <input name="" type="text" disabled="disabled" value="Linkedln"style="width:450px;height:30px;"/>
+	<input name="" type="text" disabled="disabled" value="Facebook" style="width:450px;height:30px;"/>  
 	</p>
+	<p>Instagram</p>
+	<p>
+	<input name="" type="text" disabled="disabled" value="Instagram" style="width:450px;height:30px;"/>
+	</p>
+	</div>
 	
+	<div style="width:50%;float:right;">
+	<p>Linkedln</p>
 	<p>
-	<input name="" type="text" disabled="disabled" value="Instagram" style="width:450px;height:30px;"/>  <input name="" type="text" disabled="disabled" value="Twitter"style="width:450px;height:30px;"/>
+	<input name="" type="text" disabled="disabled" value="Linkedln"style="width:450px;height:30px;"/>
 	</p>
+	<p>Twitter</p>
+	<p>
+	  <input name="" type="text" disabled="disabled" value="Twitter"style="width:450px;height:30px;"/>
+	</p>
+	</div>
 	
 	</div>
 
