@@ -26,12 +26,14 @@
 
 		.imgtest{text-align:center}
 		#picture{margin:0 auto;}
-		#edit{position:relative;top:20px;height:20px;right:175px;}
+		#edit{position:relative;top:20px;height:20px;right:0px;}
 		
 		#detail{
-		text-align:center
+		text-align:center;
+		margin:0 auto;
+		width:905px;
 		}
-        body{position:relative;top:20px;}
+        body{text-align:center;position:relative;top:125px;}
       
         
     </style>
@@ -45,43 +47,73 @@
 		</div>
 
 	  </figure>
+	  <button type="submit" name="">Upload picture</button>
 	</div>
      
 	
 	<div id="detail">
 
+	<div style="width:50%;float:left;">
+	<p>First Name</p>
+     <p><input name="" type="text" value="First Name" style="width:450px;height:30px;"/> </p>
+	 <p>Phone Number</p>
+	 <p><input name="" type="text" value="Phone Number" style="width:450px;height:30px;"/></p>
+	</div>
+	
+	<div style="width:50%;float:right;">
+	<p>Family Name</p>
 	<p>
-    <input name="" type="text"  value="First Name" style="width:450px;height:30px;"/>  <input name="" type="text"  value="Family Name"style="width:450px;height:30px;"/>
+     <input name="" type="text" value="Family Name"style="width:450px;height:30px;"/>
 	</p>
-
+	<p>Email Address</p>
     <p>
-	<input name="" type="text"  value="Phone Number" style="width:450px;height:30px;"/>  <input name="" type="text"  value="Email Address"style="width:450px;height:30px;"/>
+	  <input name="" type="text" value="Email Address"style="width:450px;height:30px;"/>
     </p>
+	</div>
 
+	<p style="float:left;">Default Short Biogrphy</p>
 	<p>
-    <textarea name="" type="text" style="width:905px;height:60px;">Default Short Biogrphy</textarea>
+    <textarea name="" type="text" style="width:905px;height:60px;">Default Short Biogrphy</textarea> 
 	</p>
 
+	<p style="float:left;">Default Long Biogrphy</p>
 	<p>
-	<textarea name="" type="text" style="width:905px;height:90px;">Default Long Biogrphy</textarea> 
+	<textarea name="" type="text" style="width:905px;height:90px;">Default Long Biogrphy</textarea>  
 	</p>
 
+	<p style="float:left;">Website</p>
 	<p>
-    <input name="" type="text"  value="Website" style="width:905px;height:30px;"/> 
+    <input name="" type="text" value="Website" style="width:905px;height:30px;"/> 
 	</p>
 	
+	<div style="width:50%;float:left;">
+	<p>Facebook</p>
 	<p>
-	<input name="" type="text"  value="Facebook" style="width:450px;height:30px;"/>  <input name="" type="text"  value="Linkedln"style="width:450px;height:30px;"/>
+	<input name="" type="text" value="Facebook" style="width:450px;height:30px;"/>  
 	</p>
+	<p>Instagram</p>
+	<p>
+	<input name="" type="text" value="Instagram" style="width:450px;height:30px;"/>
+	</p>
+	</div>
 	
+	<div style="width:50%;float:right;">
+	<p>Linkedln</p>
 	<p>
-	<input name="" type="text"  value="Instagram" style="width:450px;height:30px;"/>  <input name="" type="text"  value="Twitter"style="width:450px;height:30px;"/>
+	<input name="" type="text" value="Linkedln"style="width:450px;height:30px;"/>
 	</p>
+	<p>Twitter</p>
+	<p>
+	  <input name="" type="text" value="Twitter"style="width:450px;height:30px;"/>
+	</p>
+	</div>
+	
+	<div id="edit" >
+	<p><form action="profile.php" method="post">
+	<button type="submit" style="float:right;margin-left:20px;color:white;background-color:black; border-color: black; width:100px;"> Cancel </button></form></p>
+	<p><button type="submit" style="float:right;color:black;background-color:#FECE1A; border-color: #FECE1A; width:100px;"> Save </button></p>
 	
 	</div>
-	<div id="edit">
-	<p><button type="submit" style="float:right;margin-left:20px;color:white;background-color:black; border-color: black; width:100px;"> Cancel </button></p>
-	<p><button type="submit" style="float:right;color:black;background-color:#FECE1A; border-color: #FECE1A; width:100px;"> Save </button></p>
 	</div>
 
 	</body>
