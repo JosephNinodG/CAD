@@ -16,6 +16,33 @@
         <title>Event Details</title>
 	</head>
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-light navbar-bg hide">
+			<div class="container">
+				<div class="row align-items-center justify-content-center w-100">
+					<div class="col-2">
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggle" aria-controls="navbar-toggle" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</div>
+					<div class="col-10 text-center">
+						<img class="logo" src="logo.png" alt="BookMeIn2">
+						<div class="collapse navbar-collapse" id="navbar-toggle">
+							<ul class="navbar-nav mt-2 mt-lg-0 text-center">
+								<li class="nav-item">
+									<a class="btn btn-dark mb-2" class="nav-link" href="seminars.php">Dashboard</a>
+								</li>
+								<li class="nav-item">
+									<a class="btn btn-dark mb-2" class="nav-link" href="editProfile.php">Profile</a>
+								</li>
+								<li class="nav-item">
+									<a class="btn btn-dark mb-2" class="nav-link" href="logout.php">Logout</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
 		<div class="sidenav">
 			<div class="container">
 				<div class="row">
@@ -93,14 +120,14 @@
 	                <div class="row pt-3">
 	                    <div class="col">
 							<div class="row pt-3">
-								<div class="col-sm-3">
+								<div class="col-sm-6 col-md-5">
 									<div class="form-group">
 			                            <label for="seminar-start-time">Start Time</label>
 			                            <input type="text" data-target="seminar-start-time" name="seminar-start-time" class="form-control" id="seminar-start-time" aria-describedby="start-time-help" readonly>
 			                            <small id="start-time-help" class="form-text text-muted">This has already been set for you.</small>
 			                        </div>
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-6 col-md-5">
 									<div class="form-group">
 			                            <label for="seminar-end-time">End Time</label>
 			                            <input type="text" data-target="seminar-end-time" name="seminar-end-time" class="form-control" id="seminar-end-time" aria-describedby="end-time-help" readonly>
