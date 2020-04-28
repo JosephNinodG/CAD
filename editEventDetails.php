@@ -11,9 +11,50 @@
 	</head>
 	<body>
 		<div class="sidenav">
-		  <a href="seminars.php">Dashboard</a>
-		  <a href="#Profile">Profile</a>
-		  <a href="logout.php">Logout</a>
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="row pt-3 justify-content-center">
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<img src="logo.png" alt="BookMeIn2">
+								</div>
+							</div>
+						</div>
+						<div class="row pt-3 justify-content-center">
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<div class="profile-image-container" data-target="profile-image-container"></div>
+								</div>
+							</div>
+						</div>
+						<div class="row pt-3 justify-content-center">
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<p>Jake Doran</p>
+								</div>
+							</div>
+						</div>
+						<div class="row pt-3 justify-content-center">
+							<div class="col-8">
+								<div class="row">
+									<a class="btn btn-dark btn-block mb-2" href="seminars.php">Dashboard</a>
+								</div>
+							</div>
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<a class="btn btn-dark btn-block mb-2" href="editProfile.php">Profile</a>
+								</div>
+							</div>
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<a class="btn btn-dark btn-block mb-2" href="logout.php">Logout</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="main" id="content">
 	        <div class="container">
@@ -32,9 +73,7 @@
 	                </div>
 	                <div class="row pt-3">
 	                    <div class="col">
-	                    	<div class="cover-image-container" data-target="cover-image-container">
-								<!-- <img src="test.png" class="img-fluid cover-image" onclick="openLightbox($(this))"> -->
-							</div>
+	                    	<div class="cover-image-container" data-target="cover-image-container"></div>
 	                    </div>
 	                </div>
 	                <div class="row pt-3 hide" data-target="cover-image-row">

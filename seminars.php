@@ -11,16 +11,62 @@
 ?>
 
 <!DOCTYPE html>
-<html>
-	<head>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="master.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/176870990a.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.tiny.cloud/1/44tuep5jmn2ahu9y2iv6e6u3n7srjy2odh8nht32st8jyexs/tinymce/5/tinymce.min.js" referrerpolicy="origin"/></script>
+        <link rel="stylesheet" href="master.css">
+        <title>Dashboard</title>
 	</head>
 	<body>
 		<div class="sidenav">
-		  <a href="#Dashboard">Dashboard</a>
-		  <a href="#Profile">Profile</a>
-		  <a href="#Logout">Logout</a>
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="row pt-3 justify-content-center">
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<img src="logo.png" alt="BookMeIn2">
+								</div>
+							</div>
+						</div>
+						<div class="row pt-3 justify-content-center">
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<div class="profile-image-container" data-target="profile-image-container"></div>
+								</div>
+							</div>
+						</div>
+						<div class="row pt-3 justify-content-center">
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<p>Jake Doran</p>
+								</div>
+							</div>
+						</div>
+						<div class="row pt-3 justify-content-center">
+							<div class="col-8">
+								<div class="row">
+									<a class="btn btn-dark btn-block mb-2" href="seminars.php">Dashboard</a>
+								</div>
+							</div>
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<a class="btn btn-dark btn-block mb-2" href="editProfile.php">Profile</a>
+								</div>
+							</div>
+							<div class="col-8">
+								<div class="row justify-content-center">
+									<a class="btn btn-dark btn-block mb-2" href="logout.php">Logout</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="main" id="content">
 			<?php
