@@ -1,0 +1,123 @@
+html,
+body { /* Set page structure. Page has min-height=600px so that overall page structure does not scale past that size.*/
+    height: 100%;
+    margin: 0;
+    min-height: 600px;
+}
+
+@media (max-height: 600px) { /* At a height of 600px or lower, media query is activated */
+
+    #logo {
+        transform: scale(0.9); /* Transforms (scales) logo down by 10% */
+    }
+
+    .banner { 
+        height: 5%; /* Shrinks banner size */
+    }
+
+    .content { /* Removes all padding around content */
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+
+    }
+
+    .container { /* Transforms (scales) container down by 10% */
+        transform: scale(0.9);
+    }
+
+}
+
+header {
+    top: 0;
+    height: 10%;
+    width: 100%;
+    background-color: #FECE1A;
+}
+
+#logo {
+    background-size: contain;
+    height: 40px;
+    position: relative;
+}
+
+#logocontainer {
+    padding-left: 20px;
+    padding-top: 1%;
+}
+
+footer {
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    background-color: #FECE1A;
+}
+
+.banner {
+    top: 0;
+    height: 12%;
+    width: 100%;
+    background-color: #181A1C;
+    text-align: center;
+}
+
+.content {
+    height: 56%;
+    width: 100%;
+    background-color: #181A1C;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container {
+    height: 100%;
+    width: 80%;
+}
+
+.row {
+    height: 100%;
+}
+
+.col {
+    height: 100%;
+}
+
+#loginform {
+    border-radius: 25px;
+    background-color: #FECE1A;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.form-group {
+    height: 10%;
+}
+
+#loginlabel {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.labelstyle {
+    font-weight: bold;
+}
+
+#formbutton {
+    background-color: black;
+    border-color: black;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+}
+
+.TandC-PrivacyStatment {
+    padding-top: 20px;
+    text-align:center;
+}
+
+.TandC-PrivacyStatment a {
+    color: black;
+}
