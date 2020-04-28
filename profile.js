@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	window.formValues = {};
+	window.file = {};
+
 	initiateView();
 
 	$('body').on('click tap', '[data-trigger="edit-profile"]', function(event) {
@@ -10,6 +13,67 @@ $(document).ready(function() {
 		// Enable edit mode
 		enableEdit();
 	});
+
+	$('body').on('click tap', '[data-trigger="cancel-profile"]', function(event) {
+		event.preventDefault();
+
+		revertFields();
+	});
+
+	$('body').on('click tap', '[data-target="upload-profile-image"]', function(event) {
+		event.preventDefault();
+
+		$('body').find('#profile-image-modal').modal('show');
+	});
+
+	// On submit of cover image upload, upload and display image
+	$(document).on("submit", "#cover-image-form", function(event){
+        event.preventDefault();
+
+		// When upload is done, show error or display image
+        $.when(
+            doImageUpload(this)
+        ).done(function(file) {
+			// If error, show error message
+            if (file.error) {
+				$('body').find('[data-target="profile-image-error"]').html(file.errorMsg);
+				$('body').find('[data-target="profile-image-error"]').show();
+            } else {
+				// Hide any previous errors
+				$('body').find('[data-target="profile-image-error"]').hide();
+
+				// Show the image
+                displayImage(file.file);
+
+				window.file = file.file;
+
+				console.log(window.file);
+
+				// Hide modal
+                $('body').find('#profile-image-modal').modal('hide');
+            }
+        });
+    });
+
+	// On click of save details, update event details
+    $('body').on('click tap', '[data-target="save-profile"]', function() {
+        event.preventDefault();
+
+		saveFormValues();
+
+		updateProfile();
+
+		// Remove the tinymce editors
+		tinymce.remove();
+
+		initReadonlyTinymce();
+
+		// Disable edit functionality
+		// disableEdit();
+
+		// Scroll back to top of page
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
+    });
 });
 
 function initiateView() {
@@ -35,7 +99,21 @@ function getProfile() {
 }
 
 function displayView(data) {
-	console.log(data)
+	$('body').find('[data-target="first-name"]').val(data.first_name);
+	$('body').find('[data-target="last-name"]').val(data.last_name);
+	$('body').find('#user-short-biography').val(data.short_bio);
+	$('body').find('#user-long-biography').val(data.long_bio);
+	// $('body').find('').val();
+
+	window.startValues = {
+		'first_name' : data.first_name,
+		'last_name' : data.last_name,
+		'short_bio' : data.short_bio,
+		'long_bio' : data.long_bio,
+		'profile' : data.profile,
+	};
+
+	initReadonlyTinymce();
 }
 
 // Initiate the Tinymce editors on textareas
@@ -70,7 +148,98 @@ function initTinymce() {
     });
 }
 
+function initReadonlyTinymce() {
+	tinymce.init({
+		selector: '.textarea-short-biography',
+		readonly: 1,
+		menubar:false,
+		statusbar: false,
+		toolbar:false
+	});
+
+	tinymce.init({
+		selector: '.textarea-long-biography',
+		readonly: 1,
+		menubar:false,
+		statusbar: false,
+		toolbar:false
+	});
+
+	$('body').find('[data-target="bio-current-chars"]').html($('body').find('#user-short-biography').val().length + '/255 characters');
+}
+
 function enableEdit() {
+	$('body').find('[data-target="first-name"]').attr('disabled', false);
+	$('body').find('[data-target="last-name"]').attr('disabled', false);
+
 	$('body').find('[data-target="save-row"]').removeClass('hide');
 	$('body').find('[data-target="profile-image-row"]').removeClass('hide');
+	$('body').find('[data-target="edit-row"]').addClass('hide');
+}
+
+function revertFields() {
+	$('body').find('[data-target="first-name"]').attr('disabled', true);
+	$('body').find('[data-target="last-name"]').attr('disabled', true);
+
+	$('body').find('[data-target="first-name"]').val(window.startValues['first_name']);
+	$('body').find('[data-target="last-name"]').val(window.startValues['last_name']);
+	$('body').find('#user-short-biography').val(window.startValues['short_bio']);
+	$('body').find('#user-long-biography').val(window.startValues['long_bio']);
+
+	$('body').find('[data-target="save-row"]').addClass('hide');
+	$('body').find('[data-target="profile-image-row"]').addClass('hide');
+	$('body').find('[data-target="edit-row"]').removeClass('hide');
+}
+
+// Ajax call to do image file upload
+function doImageUpload($this) {
+    return $.ajax({
+        url: 'imageUpload.php',
+        type: 'POST',
+        dataType: 'JSON',
+        processData: false,
+        contentType: false,
+        data: new FormData($this),
+    });
+}
+
+// Process and display uploaded profile image
+function displayImage(file) {
+	// Format html for the profile image
+	let html = `<img class="img-fluid" src="data:image/png;base64, ${file.data}">`;
+
+	// Set profile image
+	$('body').find('#profile-form [data-target="profile-image-container"]').html(html);
+}
+
+function saveFormValues() {
+	window.formValues.first_name = $('body').find('[data-target="first-name"]').val();
+	window.formValues.last_name = $('body').find('[data-target="last-name"]').val();
+	window.formValues.shortBiography = tinymce.editors['user-short-biography'].getContent();
+	window.formValues.longBiography = tinymce.editors['user-long-biography'].getContent();
+}
+
+function updateProfile() {
+	$.when(
+		attemptSave()
+	).done(function(data) {
+		// error handling
+	});
+}
+
+function attemptSave() {
+	let data = JSON.stringify({
+		'first_name': window.formValues.first_name,
+		'last_name': window.formValues.last_name,
+		'short_bio': window.formValues.shortBiography,
+		'long_bio': window.formValues.longBiography,
+		'profile': window.file,
+	});
+
+	return $.ajax({
+        url: 'saveProfileAPI.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data: { data },
+    });
 }

@@ -58,7 +58,7 @@
 		</div>
 		<div class="main" id="content">
 			<div class="container">
-	            <form id="profile-form" >
+	            <form id="profile-form">
 					<div class="row pt-3" data-target="edit-row">
 	                    <div class="col text-right">
 	                        <button type="submit" class="btn btn-warning mb-2" data-trigger="edit-profile">EDIT</button>
@@ -74,7 +74,7 @@
 	                <div class="row pt-3 justify-content-center">
 	                    <div class="col-8">
 							<div class="row justify-content-center hide" data-target="profile-image-row">
-								<button type="submit" class="btn btn-secondary mb-2" data-target="upload-profile-image">UPLOAD PROFILE IMAGE</button>
+								<button type="button" class="btn btn-secondary mb-2" data-target="upload-profile-image">UPLOAD PROFILE IMAGE</button>
 							</div>
 	                    </div>
 	                </div>
@@ -112,6 +112,32 @@
 	                    </div>
 	                </div>
 	            </form>
+	        </div>
+			<!-- Modals -->
+			<div id="profile-image-modal" class="modal" tabindex="-1" role="dialog">
+	            <div class="modal-dialog" role="document">
+	                <div class="modal-content">
+	                    <div class="modal-header">
+	                        <h5 class="modal-title">Upload Profile Image</h5>
+	                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">&times;</span>
+	                        </button>
+	                    </div>
+	                    <form action='post' id="cover-image-form" enctype="multipart/form-data">
+	                        <div class="modal-body">
+								<div class="alert alert-danger" role="alert" data-target="cover-image-error" style="display: none;"></div>
+	                            <div class="form-group">
+	                                <input id="cover-image-file" name="cover-image-file" type="file" />
+									<small class="form-text text-muted">Note: only .jpg .jpeg and .png files are permitted.</small>
+	                            </div>
+	                        </div>
+	                        <div class="modal-footer">
+	                            <button type="submit" class="btn btn-dark" data-trigger="file-upload">UPLOAD</button>
+	                            <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
 	        </div>
 		</div>
 	</body>
