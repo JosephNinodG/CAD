@@ -36,14 +36,16 @@
 						<div class="row pt-3 justify-content-center">
 							<div class="col-8">
 								<div class="row justify-content-center">
-									<div class="profile-image-container" data-target="profile-image-container"></div>
+									<div class="profile-image-container" data-target="profile-image-container">
+										<?= $_SESSION['profile-img'] ?>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="row pt-3 justify-content-center">
 							<div class="col-8">
 								<div class="row justify-content-center">
-									<p>Jake Doran</p>
+									<p><?= $_SESSION['name'] ?></p>
 								</div>
 							</div>
 						</div>
@@ -133,7 +135,7 @@
 			}
 
 			?>
-			<div class="container-fluid">
+			<div class="container-fluid pt-5">
 			<?php
 			if($success){
 				//use a counter to tally the total seminars being shown
@@ -174,7 +176,7 @@
 				echo "<div class='row'>Unable to get results: $error</div>";
 			}
 			//end the container with the updated seminar count
-			echo ("<div class='row'> $seminarCount locations found</div>");
+			// echo ("<div class='row'> $seminarCount locations found</div>");
 			?>
 			<!-- Include section for feedback that can be updated by certain errors -->
 			<div id='feedback'>

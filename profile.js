@@ -47,8 +47,6 @@ $(document).ready(function() {
 
 				window.file = file.file;
 
-				console.log(window.file);
-
 				// Hide modal
                 $('body').find('#profile-image-modal').modal('hide');
             }
@@ -69,7 +67,7 @@ $(document).ready(function() {
 		initReadonlyTinymce();
 
 		// Disable edit functionality
-		// disableEdit();
+		disableEdit();
 
 		// Scroll back to top of page
 		$('html, body').animate({ scrollTop: 0 }, 'slow');
@@ -192,6 +190,11 @@ function revertFields() {
 	$('body').find('#user-short-biography').val(window.startValues['short_bio']);
 	$('body').find('#user-long-biography').val(window.startValues['long_bio']);
 
+	let html = `<img class="img-fluid" src="data:image/png;base64, ${window.startValues['profile']}">`;
+
+	// Set profile image
+	$('body').find('#profile-form [data-target="profile-image-container"]').html(html);
+
 	$('body').find('[data-target="save-row"]').addClass('hide');
 	$('body').find('[data-target="profile-image-row"]').addClass('hide');
 	$('body').find('[data-target="edit-row"]').removeClass('hide');
@@ -229,7 +232,16 @@ function updateProfile() {
 	$.when(
 		attemptSave()
 	).done(function(data) {
-		// error handling
+		if (data.error) {
+			return;
+		}
+
+		if (window.file) {
+			let html = `<img class="img-fluid" src="data:image/png;base64, ${window.file.data}">`;
+
+			// Set profile image
+			$('body').find('.sidenav [data-target="profile-image-container"]').html(html);
+		}
 	});
 }
 
@@ -248,4 +260,13 @@ function attemptSave() {
         dataType: 'JSON',
         data: { data },
     });
+}
+
+function disableEdit() {
+	$('body').find('[data-target="first-name"]').attr('disabled', true);
+	$('body').find('[data-target="last-name"]').attr('disabled', true);
+
+	$('body').find('[data-target="save-row"]').addClass('hide');
+	$('body').find('[data-target="profile-image-row"]').addClass('hide');
+	$('body').find('[data-target="edit-row"]').removeClass('hide');
 }

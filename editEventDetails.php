@@ -1,3 +1,9 @@
+<?php
+
+	session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -24,14 +30,16 @@
 						<div class="row pt-3 justify-content-center">
 							<div class="col-8">
 								<div class="row justify-content-center">
-									<div class="profile-image-container" data-target="profile-image-container"></div>
+									<div class="profile-image-container" data-target="profile-image-container">
+										<?= $_SESSION['profile-img'] ?>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="row pt-3 justify-content-center">
 							<div class="col-8">
 								<div class="row justify-content-center">
-									<p>Jake Doran</p>
+									<p><?= $_SESSION['name'] ?></p>
 								</div>
 							</div>
 						</div>
@@ -71,7 +79,7 @@
 	                        </div>
 	                    </div>
 	                </div>
-	                <div class="row pt-3">
+	                <!-- <div class="row pt-3">
 	                    <div class="col">
 	                    	<div class="cover-image-container" data-target="cover-image-container"></div>
 	                    </div>
@@ -81,7 +89,7 @@
 	                        <button type="submit" class="btn btn-secondary mb-2" data-target="upload-cover-image">UPLOAD COVER IMAGE</button>
 							<button type="button" class="btn btn-danger mb-2" data-trigger="remove-image" disabled><i class="fas fa-trash"></i></button>
 	                    </div>
-	                </div>
+	                </div> -->
 	                <div class="row pt-3">
 	                    <div class="col">
 							<div class="row pt-3">

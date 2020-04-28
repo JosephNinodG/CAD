@@ -106,38 +106,38 @@ $(document).ready(function() {
     });
 
 	// On submit of cover image upload, upload and display image
-	$(document).on("submit", "#cover-image-form", function(event){
-        event.preventDefault();
-
-		// Get current image to compare against to update progress bar
-		let currentImage = Object.keys(window.imageToUpload).length;
-
-		// When upload is done, show error or display image
-        $.when(
-            doImageUpload(this)
-        ).done(function(file) {
-			// If error, show error message
-            if (file.error) {
-				$('body').find('[data-target="cover-image-error"]').html(file.errorMsg);
-				$('body').find('[data-target="cover-image-error"]').show();
-            } else {
-				// Hide any previous errors
-				$('body').find('[data-target="cover-image-error"]').hide();
-
-				// Show the image
-                displayImage(file.file);
-
-				// Allow removal of image
-				$('body').find('[data-trigger="remove-image"]').attr('disabled', false);
-
-				// Hide modal
-                $('body').find('#cover-image-modal').modal('hide');
-
-				// Update progress bar
-				updateProgressBarAfterImageUpload(currentImage);
-            }
-        });
-    });
+	// $(document).on("submit", "#cover-image-form", function(event){
+    //     event.preventDefault();
+	//
+	// 	// Get current image to compare against to update progress bar
+	// 	let currentImage = Object.keys(window.imageToUpload).length;
+	//
+	// 	// When upload is done, show error or display image
+    //     $.when(
+    //         doImageUpload(this)
+    //     ).done(function(file) {
+	// 		// If error, show error message
+    //         if (file.error) {
+	// 			$('body').find('[data-target="cover-image-error"]').html(file.errorMsg);
+	// 			$('body').find('[data-target="cover-image-error"]').show();
+    //         } else {
+	// 			// Hide any previous errors
+	// 			$('body').find('[data-target="cover-image-error"]').hide();
+	//
+	// 			// Show the image
+    //             displayImage(file.file);
+	//
+	// 			// Allow removal of image
+	// 			$('body').find('[data-trigger="remove-image"]').attr('disabled', false);
+	//
+	// 			// Hide modal
+    //             $('body').find('#cover-image-modal').modal('hide');
+	//
+	// 			// Update progress bar
+	// 			updateProgressBarAfterImageUpload(currentImage);
+    //         }
+    //     });
+    // });
 
 	// On click of remove file, remove presentation file
     $('body').on('click tap', '[data-trigger="remove-file"]', function(event) {
@@ -165,30 +165,30 @@ $(document).ready(function() {
     });
 
 	// On click of remove image, remove cover image
-	$('body').on('click tap', '[data-trigger="remove-image"]', function(event) {
-		event.preventDefault();
-
-		// Get current image
-		let currentImage = Object.keys(window.imageToUpload).length;
-
-		// Show confirmation dialog
-		let deleteImage = confirm('Are you sure you want to remove the cover image?');
-
-		// If permitted
-		if (deleteImage) {
-			// Reset object
-			window.imageToUpload = {};
-
-			// Remove file html
-			$('body').find('[data-target="cover-image-container"]').html('');
-
-			// Disable remove file button
-			$('body').find('[data-trigger="remove-image"]').attr('disabled', true);
-
-			// Update progress bar
-			updateProgressBarAfterImageUpload(currentImage);
-        }
-	});
+	// $('body').on('click tap', '[data-trigger="remove-image"]', function(event) {
+	// 	event.preventDefault();
+	//
+	// 	// Get current image
+	// 	let currentImage = Object.keys(window.imageToUpload).length;
+	//
+	// 	// Show confirmation dialog
+	// 	let deleteImage = confirm('Are you sure you want to remove the cover image?');
+	//
+	// 	// If permitted
+	// 	if (deleteImage) {
+	// 		// Reset object
+	// 		window.imageToUpload = {};
+	//
+	// 		// Remove file html
+	// 		$('body').find('[data-target="cover-image-container"]').html('');
+	//
+	// 		// Disable remove file button
+	// 		$('body').find('[data-trigger="remove-image"]').attr('disabled', true);
+	//
+	// 		// Update progress bar
+	// 		updateProgressBarAfterImageUpload(currentImage);
+    //     }
+	// });
 });
 
 // Initiate the view with event details
@@ -357,7 +357,7 @@ function defaultProgressBar() {
     }
 
 	if (Object.keys(window.filesToUpload).length > 0) {
-		window.completePercent += 12.5;
+		window.completePercent += 25;
 	}
 
 	// Animate progress change
@@ -641,12 +641,12 @@ function doImageUpload($this) {
 function updateProgressBarAfterUpload(currentFiles) {
 	// If there were no existing files but files now exist, mark file section as complete
 	if (currentFiles == 0 && Object.keys(window.filesToUpload).length > 0) {
-        window.completePercent += 12.5;
+        window.completePercent += 25;
     }
 
 	// If there were existing files but no files now exist, mark file section as incomplete
     if (currentFiles > 0 && Object.keys(window.filesToUpload).length == 0) {
-        window.completePercent -= 12.5;
+        window.completePercent -= 25;
     }
 
 	// Animate progress change
@@ -656,22 +656,22 @@ function updateProgressBarAfterUpload(currentFiles) {
 }
 
 // Update progress bar after image upload
-function updateProgressBarAfterImageUpload(currentImage) {
-	// If there was no existing image but an image now exist, mark image section as complete
-	if (currentImage == 0 && Object.keys(window.imageToUpload).length > 0) {
-        window.completePercent += 12.5;
-    }
-
-	// If there was an existing image but no image now exists, mark image section as incomplete
-    if (currentImage > 0 && Object.keys(window.imageToUpload).length == 0) {
-        window.completePercent -= 12.5;
-    }
-
-	// Animate progress change
-	animateProgressBar();
-
-	return;
-}
+// function updateProgressBarAfterImageUpload(currentImage) {
+// 	// If there was no existing image but an image now exist, mark image section as complete
+// 	if (currentImage == 0 && Object.keys(window.imageToUpload).length > 0) {
+//         window.completePercent += 12.5;
+//     }
+//
+// 	// If there was an existing image but no image now exists, mark image section as incomplete
+//     if (currentImage > 0 && Object.keys(window.imageToUpload).length == 0) {
+//         window.completePercent -= 12.5;
+//     }
+//
+// 	// Animate progress change
+// 	animateProgressBar();
+//
+// 	return;
+// }
 
 // Update progress bar on form input change
 function updateProgressBar() {

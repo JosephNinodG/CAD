@@ -76,22 +76,25 @@ body {
 	box-shadow: 2px 4px 5px #888888;
 }
 
+.navbar-bg {
+	background-color: #FECE1A;
+}
+
+.logo {
+	width: 50%;
+}
+
 .main {
   margin-left: 25%; /* Same as the width of the sidenav */
   /* font-size: 28px; /* Increased text to enable scrolling */ */
   padding: 0px 10px;
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {
-	  padding-top: 15px;
-  }
-  .sidenav a {
-	  font-size: 18px;
-  }
-}
-
 @media screen and (min-width: 0px) and (max-width: 770px) {
+  .navbar {
+  	  display: block;
+  }
+
   .sidenav {
 	  display: none;
   }
@@ -102,6 +105,10 @@ body {
 }
 
 @media screen and (min-width: 771px) and (max-width: 999px) {
+  /* .navbar {
+	  display: none;
+  } */
+
   .sidenav {
 	  display: block;
 	  width: 30%

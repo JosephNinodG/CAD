@@ -64,5 +64,9 @@ if ($profile->success == false) {
 	return;
 }
 
+if ($data['profileimage']) {
+	$_SESSION['profile-img'] = '<img class="img-fluid" src="data:image/png;base64, '.$data['profileimage'].'">';
+};
+
 echo json_encode($response);
 return;

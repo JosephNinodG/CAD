@@ -27,7 +27,43 @@ $results = json_decode($output);
 
 if($results->success){
 	if($results->data->loggedin){
-		$_SESSION['apikey'] = $results->data->apikey;
+		$apikey = $results->data->apikey;
+
+		// Profile Details
+		$url = 'https://reg.bookmein2.com/api/checkinapi.php';
+		$urlstring = '?action=getprofile&apikey='.$apikey;
+		$url = $url.$urlstring;
+
+		// Valid id so try profile api call
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+		$profile = curl_exec($ch);
+
+		curl_close($ch);
+
+		if (!$profile) {
+			header("Location: index.php");
+			exit();
+		}
+
+		$profile = json_decode($profile);
+
+		if ($profile->success == false) {
+			header("Location: index.php");
+			exit();
+		}
+
+		$_SESSION['apikey'] = $apikey;
+		$_SESSION['name'] = $profile->data->first_name.' '.$profile->data->last_name;
+		$_SESSION['profile-img'] = '';
+
+		if (!empty($profile->data->profile)) {
+			$_SESSION['profile-img'] = '<img class="img-fluid" src="data:image/png;base64, '.$profile->data->profile.'">';
+		}
+
 		header("Location: seminars.php");
 		exit;
 	}else{
