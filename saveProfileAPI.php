@@ -27,9 +27,9 @@ $data = array(
 	'bio' => $long_bio,
 );
 
-// if (!empty($vars->profile)) {
-// 	$data['profile'] = $vars->profile->data;
-// };
+if (isset($vars->profile->data)) {
+	$data['profileimage'] = $vars->profile->data;
+};
 
 $ch = curl_init('https://reg.bookmein2.com/api/checkinapi.php');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

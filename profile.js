@@ -103,7 +103,13 @@ function displayView(data) {
 	$('body').find('[data-target="last-name"]').val(data.last_name);
 	$('body').find('#user-short-biography').val(data.short_bio);
 	$('body').find('#user-long-biography').val(data.long_bio);
-	// $('body').find('').val();
+
+	if (data.profile) {
+		let html = `<img class="img-fluid" src="data:image/png;base64, ${data.profile}">`;
+
+		// Set profile image
+		$('body').find('#profile-form [data-target="profile-image-container"]').html(html);
+	}
 
 	window.startValues = {
 		'first_name' : data.first_name,
