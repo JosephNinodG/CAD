@@ -209,12 +209,11 @@ function initiateView() {
 		getDetails(id)
 	).done(function(data) {
 		if (data.error == true) {
-			if (data.errorMsg == 'No valid apikey found') {
-				window.location.href = 'index.php';
-			}
-		} else {
-			displayView(data.data);
+			window.location.href = 'seminars.php';
+			return;
 		}
+
+		displayView(data.data);
 	});
 }
 

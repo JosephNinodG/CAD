@@ -54,7 +54,7 @@ if (!$details) {
 
 $details = json_decode($details);
 
-if ($details->success == false) {
+if ($details->data->success == false) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'API failed';
 	echo json_encode($response);
