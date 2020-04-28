@@ -1,0 +1,119 @@
+html, body {height: 100%; margin:0px !important;}
+
+body {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-height: 415px) {
+    header {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+
+    #content {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+    }
+
+    .container {
+        transform: scale(0.9);
+    }
+
+}
+
+header{
+    position: fixed;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    background-color: #FECE1A;
+    z-index: 1;
+}
+
+#Logo {
+    background-size: contain;
+    height: 50px;
+    position: fixed;
+    top: 10px;
+    bottom: 10px;
+}
+
+#LogoDiv {
+    padding-left: 20px;
+}
+
+#content {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: fixed;
+    width:100%;
+    top: 100px;
+    bottom: 80px;
+    overflow: auto;
+}
+
+.container {
+    display: flex-inline;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+
+#BlackSpace {
+    text-align: center;
+}
+
+#LoginForm {
+    border-radius: 25px;
+    background-color: #FECE1A;
+    align-content: center;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* column-width: 600px; */
+
+}
+
+#LoginLabel {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#labelStyle {
+    font-weight: bold;
+}
+
+#loginbutton {
+    background-color: black;
+    border-color: black;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+}
+
+footer {
+    background-color: #FECE1A;
+    position: fixed;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+    z-index: 1;
+    padding-top: 20px;
+}
+
+.TandC-PrivacyStatment {
+    text-align:center;
+}
+
+.TandC-PrivacyStatment a {
+    color: black;
+}
