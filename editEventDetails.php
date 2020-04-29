@@ -28,11 +28,13 @@
 		<div class="main" id="content">
 	        <div class="container">
 	            <form id="details-form" >
-					<div class="row pt-3" data-target="edit-row">
-	                    <div class="col text-right">
-	                        <button type="submit" class="btn btn-warning mb-2" data-trigger="edit-details">EDIT</button>
-	                    </div>
-	                </div>
+					<div class="normal-buttons">
+						<div class="row pt-3" data-target="edit-row">
+		                    <div class="col text-right">
+		                        <button type="submit" class="btn btn-warning mb-2" data-trigger="edit-details">EDIT</button>
+		                    </div>
+		                </div>
+					</div>
 	                <div class="row pt-3 sticky hide" data-target="progress-row">
 	                    <div class="col">
 	                        <div class="progress">
@@ -108,15 +110,27 @@
 	                        <button type="submit" class="btn btn-secondary mb-2" data-target="upload-presentation">UPLOAD PRESENTATION</button>
 	                    </div>
 	                </div>
-	                <div class="row" data-target="files-container"></div>
-	                <div class="row hide" data-target="save-row">
-	                    <div class="col text-right">
-	                        <button type="submit" class="btn btn-warning mb-2" data-target="save-details">SAVE</button>
-	                        <button type="submit" class="btn btn-dark mb-2" data-target="cancel-details">CANCEL</button>
-	                    </div>
-	                </div>
+	                <div class="row pb-5" data-target="files-container"></div>
+					<div class="normal-buttons pt-5">
+		                <div class="row hide" data-target="save-row">
+		                    <div class="col text-right">
+		                        <button type="submit" class="btn btn-warning mb-2" data-target="save-details">SAVE</button>
+		                        <button type="submit" class="btn btn-dark mb-2" data-target="cancel-details">CANCEL</button>
+		                    </div>
+		                </div>
+					</div>
 	            </form>
 	        </div>
+			<!-- Mobile buttons -->
+			<div class="mobile-buttons hide">
+				<div data-target="edit-row">
+					<button type="submit" class="btn btn-warning w-100" data-trigger="edit-details">EDIT</button>
+				</div>
+				<div class="hide" data-target="save-row">
+					<button type="submit" class="btn btn-warning w-50" data-target="save-details">SAVE</button>
+					<button type="submit" class="btn btn-dark w-50 float-right" data-target="cancel-details">CANCEL</button>
+				</div>
+			</div>
 	        <!-- Modals -->
 			<div id="cover-image-modal" class="modal" tabindex="-1" role="dialog">
 	            <div class="modal-dialog" role="document">

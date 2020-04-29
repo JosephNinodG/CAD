@@ -107,7 +107,7 @@
 				$seminarCount = 0;
 				foreach($seminars as $seminar) {
 					if ($seminar->event_type=="Seminar") {
-					echo "<div class='row p-3 w-100 justify-content-center' data-target='seminar-box' data-name='$seminar->name'>";
+					echo "<div class='row p-3 justify-content-center' data-target='seminar-box' data-name='$seminar->name'>";
 					echo '<div class="col-12">';
 
 					//if the event is a seminar, create a box containing a variety of details for each

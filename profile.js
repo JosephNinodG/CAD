@@ -18,6 +18,11 @@ $(document).ready(function() {
 		event.preventDefault();
 
 		revertFields();
+
+		initReadonlyTinymce();
+
+		// Scroll back to top of page
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
 	});
 
 	$('body').on('click tap', '[data-target="upload-profile-image"]', function(event) {
@@ -153,6 +158,9 @@ function initTinymce() {
 }
 
 function initReadonlyTinymce() {
+	// Remove the readonly tinymce editors
+	tinymce.remove();
+
 	tinymce.init({
 		selector: '.textarea-short-biography',
 		readonly: 1,

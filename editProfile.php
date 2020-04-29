@@ -30,11 +30,13 @@
 			<div class="container">
 	            <form id="profile-form">
 					<!-- Edit profile -->
-					<div class="row pt-3" data-target="edit-row">
-	                    <div class="col text-right">
-	                        <button type="submit" class="btn btn-warning mb-2" data-trigger="edit-profile">EDIT</button>
-	                    </div>
-	                </div>
+					<div class="normal-buttons">
+						<div class="row pt-3" data-target="edit-row">
+		                    <div class="col text-right">
+		                        <button type="submit" class="btn btn-warning mb-2" data-trigger="edit-profile">EDIT</button>
+		                    </div>
+		                </div>
+					</div>
 					<!-- Profile Image -->
 	                <div class="row pt-3 justify-content-center">
 	                    <div class="col-8">
@@ -52,7 +54,7 @@
 	                    </div>
 	                </div>
 					<!-- User data -->
-	                <div class="row pt-3">
+	                <div class="row pt-3 pb-5">
 	                    <div class="col">
 							<div class="row pt-3 justify-content-center">
 								<!-- User first name -->
@@ -84,14 +86,26 @@
 	                    </div>
 	                </div>
 					<!-- Save / Cancel edit buttons -->
-	        	    <div class="row hide" data-target="save-row">
-	                    <div class="col text-right">
-	                        <button type="submit" class="btn btn-warning mb-2" data-target="save-profile">SAVE</button>
-	                        <button type="submit" class="btn btn-dark mb-2" data-target="cancel-profile">CANCEL</button>
-	                    </div>
-	                </div>
+					<div class="normal-buttons">
+		        	    <div class="row hide" data-target="save-row">
+		                    <div class="col text-right">
+		                        <button type="submit" class="btn btn-warning mb-2" data-target="save-profile">SAVE</button>
+		                        <button type="button" class="btn btn-dark mb-2" data-trigger="cancel-profile">CANCEL</button>
+		                    </div>
+		                </div>
+					</div>
 	            </form>
 	        </div>
+			<!-- Mobile Buttons -->
+			<div class="mobile-buttons hide">
+				<div data-target="edit-row">
+					<button type="button" class="btn btn-warning w-100" data-trigger="edit-profile">EDIT</button>
+				</div>
+				<div class="hide" data-target="save-row">
+					<button type="submit" class="btn btn-warning w-50" data-target="save-profile">SAVE</button>
+					<button type="button" class="btn btn-dark w-50 float-right" data-trigger="cancel-profile">CANCEL</button>
+				</div>
+			</div>
 			<!-- Modals -->
 			<!-- Re-using the event details image upload script -->
 			<div id="profile-image-modal" class="modal" tabindex="-1" role="dialog">

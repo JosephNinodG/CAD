@@ -91,6 +91,14 @@ body {
 }
 
 @media screen and (min-width: 0px) and (max-width: 770px) {
+  .normal-buttons {
+  	  display: none;
+  }
+
+  .mobile-buttons {
+	  display: block;
+  }
+
   .navbar {
   	  display: block;
   }
@@ -105,9 +113,9 @@ body {
 }
 
 @media screen and (min-width: 771px) and (max-width: 999px) {
-  /* .navbar {
-	  display: none;
-  } */
+  .normal-buttons {
+	  display: block;
+  }
 
   .sidenav {
 	  display: block;
@@ -145,4 +153,14 @@ hr {
 	border-radius:2px;
 	margin-right:5px;
 	margin-left:5px;
+}
+
+.mobile-buttons {
+    position: fixed;
+    padding: 12px 0px 0px 0px;
+    bottom: 0;
+    width: 100%;
+    /* Height of the footer*/
+    height: 50px;
+    /* background: grey; */
 }
