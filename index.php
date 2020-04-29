@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="BMI2LoginStyleSheet.css"> <!-- import specific page stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/CAD/assets/css/BMI2LoginStyleSheet.css"> <!-- import specific page stylesheet -->
 </head>
 <body>
     <div class="wrapper">
         <header> <!-- Place BookMeIn2 logo in header with embedded link to redirect to main website -->
             <div id="LogoDiv">
                 <a href="https://www.bookmein2.com">
-                    <img src="logo.png" alt="BookMeIn2" id="Logo">
+                    <img src="/CAD/assets/imgs/logo.png" alt="BookMeIn2" id="Logo">
                 </a>
             </div>
         </header>
@@ -34,7 +34,7 @@
 									echo "<div class='alert alert-danger' role='alert'>Couldn't retrieve user profile</div>";
 								}
 						}?> <!-- login error message displayed if login.php returns badpass -->
-                        <form action='login.php' method='post' id="LoginForm"> <!-- login form created that is linked to the login.php file -->
+                        <form action='/CAD/scripts/login.php' method='post' id="LoginForm"> <!-- login form created that is linked to the login.php file -->
                             <div class="form-group">
                                 <label id="LoginLabel">Login</label>
                             </div>

@@ -252,7 +252,7 @@ function checkUrl() {
 // Get event details from API
 function getDetails(id) {
 	return $.ajax({
-        url: 'eventDetailsAPI.php',
+        url: '/CAD/scripts/eventDetailsAPI.php',
         type: 'POST',
         dataType: 'JSON',
         data: { 'id' : id },
@@ -610,7 +610,7 @@ function attemptSave() {
 	});
 
 	return $.ajax({
-        url: 'saveDetailsAPI.php',
+        url: '/CAD/scripts/saveDetailsAPI.php',
         type: 'POST',
         dataType: 'JSON',
         data: { data },
@@ -620,7 +620,7 @@ function attemptSave() {
 // Ajax call to do presentation file upload
 function doUpload($this) {
     return $.ajax({
-        url: 'fileUpload.php',
+        url: '/CAD/scripts/fileUpload.php',
         type: 'POST',
         dataType: 'JSON',
         processData: false,
@@ -632,7 +632,7 @@ function doUpload($this) {
 // Ajax call to do image file upload
 function doImageUpload($this) {
     return $.ajax({
-        url: 'imageUpload.php',
+        url: '/CAD/scripts/imageUpload.php',
         type: 'POST',
         dataType: 'JSON',
         processData: false,

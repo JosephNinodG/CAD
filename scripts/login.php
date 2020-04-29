@@ -44,14 +44,14 @@ if($results->success){ //if can access api then success
 		curl_close($ch);
 
 		if (!$profile) {
-			header("Location: index.php?badpass=1"); // if can't access user profile redirect back to login page with badpass=2 to allow error message to display
+			header("Location: /CAD/index.php?badpass=1"); // if can't access user profile redirect back to login page with badpass=2 to allow error message to display
 			exit();
 		}
 
 		$profile = json_decode($profile);
 
 		if ($profile->success == false) {
-			header("Location: index.php?badpass=1"); // if can't access user profile redirect back to login page with badpass=2 to allow error message to display
+			header("Location: /CAD/index.php?badpass=1"); // if can't access user profile redirect back to login page with badpass=2 to allow error message to display
 			exit();
 		}
 
@@ -64,16 +64,16 @@ if($results->success){ //if can access api then success
 			$_SESSION['profile-img'] = '<img class="img-fluid" src="data:image/png;base64, '.$profile->data->profile.'">';
 		}
 
-		header("Location: seminars.php"); //redirect to seminars.php, accessing the main user page
+		header("Location: /CAD/views/seminars.php"); //redirect to seminars.php, accessing the main user page
 		exit;
 	}else{
-		header("Location: index.php?badpass=1"); // if login info incorrect redirect back to login page with badpass=1 to allow error message to display
+		header("Location: /CAD/index.php?badpass=1"); // if login info incorrect redirect back to login page with badpass=1 to allow error message to display
 		exit();
 	}
 }else{
 	echo "Unable to login.  Error: ".$results->error;
 	echo "<br/>";
-	echo "<a href='index.php'>Return to Login Page</a>";
+	echo "<a href='/CAD/index.php'>Return to Login Page</a>";
 }
 
 ?>

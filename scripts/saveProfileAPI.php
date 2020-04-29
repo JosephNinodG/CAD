@@ -64,7 +64,9 @@ if ($profile->success == false) {
 	return;
 }
 
-if ($data['profileimage']) {
+$_SESSION['name'] = ucfirst($data['first_name']).' '.ucfirst($data['last_name']);
+
+if (isset($data['profileimage'])) {
 	$_SESSION['profile-img'] = '<img class="img-fluid" src="data:image/png;base64, '.$data['profileimage'].'">';
 };
 

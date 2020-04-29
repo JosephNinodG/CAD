@@ -139,6 +139,10 @@ body {
 	/* margin-right: 20px; */
 }
 
+.seminarBox:hover {
+	cursor: pointer;
+}
+
 h2 {
 	font-size: 18px;
 }

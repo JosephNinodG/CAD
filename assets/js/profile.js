@@ -95,7 +95,7 @@ function initiateView() {
 
 function getProfile() {
 	return $.ajax({
-		url: 'profileAPI.php',
+		url: '/CAD/scripts/profileAPI.php',
         type: 'POST',
         dataType: 'JSON',
 	});
@@ -211,7 +211,7 @@ function revertFields() {
 // Ajax call to do image file upload
 function doImageUpload($this) {
     return $.ajax({
-        url: 'imageUpload.php',
+        url: '/CAD/scripts/imageUpload.php',
         type: 'POST',
         dataType: 'JSON',
         processData: false,
@@ -244,7 +244,9 @@ function updateProfile() {
 			return;
 		}
 
-		if (window.file) {
+		$('body').find('[data-target="sidebar-name"]').html(window.formValues.first_name+' '+window.formValues.last_name);
+
+		if (window.file.length) {
 			let html = `<img class="img-fluid" src="data:image/png;base64, ${window.file.data}">`;
 
 			// Set profile image
@@ -263,7 +265,7 @@ function attemptSave() {
 	});
 
 	return $.ajax({
-        url: 'saveProfileAPI.php',
+        url: '/CAD/scripts/saveProfileAPI.php',
         type: 'POST',
         dataType: 'JSON',
         data: { data },

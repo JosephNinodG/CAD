@@ -8,7 +8,7 @@
 				</button>
 			</div>
 			<div class="col-10 text-center">
-				<img class="logo" src="logo.png" alt="BookMeIn2">
+				<img class="logo" src="/CAD/assets/imgs/logo.png" alt="BookMeIn2">
 				<div class="collapse navbar-collapse" id="navbar-toggle">
 					<ul class="navbar-nav mt-2 mt-lg-0 text-center">
 						<li class="nav-item">
@@ -18,7 +18,7 @@
 							<a class="btn btn-dark mb-2" class="nav-link" href="editProfile.php">Profile</a>
 						</li>
 						<li class="nav-item">
-							<a class="btn btn-dark mb-2" class="nav-link" href="logout.php">Logout</a>
+							<a class="btn btn-dark mb-2" class="nav-link" href="/CAD/scripts/logout.php">Logout</a>
 						</li>
 					</ul>
 				</div>

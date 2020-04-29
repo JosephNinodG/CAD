@@ -6,7 +6,7 @@
 				<div class="row pt-3 justify-content-center">
 					<div class="col-8">
 						<div class="row justify-content-center">
-							<img src="logo.png" alt="BookMeIn2">
+							<img src="/CAD/assets/imgs/logo.png" alt="BookMeIn2">
 						</div>
 					</div>
 				</div>
@@ -22,7 +22,7 @@
 				<div class="row pt-3 justify-content-center">
 					<div class="col-8">
 						<div class="row justify-content-center">
-							<p><?= $_SESSION['name'] ?></p>
+							<p data-target="sidebar-name"><?= $_SESSION['name'] ?></p>
 						</div>
 					</div>
 				</div>
@@ -39,7 +39,7 @@
 					</div>
 					<div class="col-8">
 						<div class="row justify-content-center">
-							<a class="btn btn-dark btn-block mb-2" href="logout.php">Logout</a>
+							<a class="btn btn-dark btn-block mb-2" href="/CAD/scripts/logout.php">Logout</a>
 						</div>
 					</div>
 				</div>
