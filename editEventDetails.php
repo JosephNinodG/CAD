@@ -2,6 +2,12 @@
 
 	session_start();
 
+	// If apikey not set redirect to login page
+	if (!isset($_SESSION['apikey'])) {
+		header("Location: index.php");
+		exit();
+	}
+
 ?>
 
 <!DOCTYPE html>
