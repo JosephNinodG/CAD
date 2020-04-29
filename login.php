@@ -1,7 +1,7 @@
 <?php
-session_start();
-$apiurl = "https://reg.bookmein2.com/api/checkinapi.php";
-$data = array(
+session_start(); //start new session
+$apiurl = "https://reg.bookmein2.com/api/checkinapi.php"; //stores api url
+$data = array( //stores data from login page form in array
 					'username' => $_POST['username'],
 					'password' => $_POST['password'],
 					'eventref' => $_POST['eventref'],
@@ -25,8 +25,8 @@ curl_close($ch);
 
 $results = json_decode($output);
 
-if($results->success){
-	if($results->data->loggedin){
+if($results->success){ //if can access api then success
+	if($results->data->loggedin){ // if login info correct then log in
 		$apikey = $results->data->apikey;
 
 		// Profile Details
@@ -66,12 +66,11 @@ if($results->success){
 			$_SESSION['profile-img'] = '<img class="img-fluid" src="data:image/png;base64, '.$profile->data->profile.'">';
 		}
 
-		header("Location: seminars.php");
+		header("Location: seminars.php"); //redirect to seminars.php, accessing the main user page
 		exit;
 	}else{
-		echo "Unable to login.  Error: ".$results->data->error;
-		echo "<br/>";
-		echo "<a href='index.php'>Return to Login Page</a>";
+		header("Location: index.php?badpass=1"); // if login info incorrect redirect back to login page with badpass=1 to allow error message to display
+		exit();
 	}
 }else{
 	echo "Unable to login.  Error: ".$results->error;
