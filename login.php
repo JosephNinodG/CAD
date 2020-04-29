@@ -34,7 +34,6 @@ if($results->success){ //if can access api then success
 		$urlstring = '?action=getprofile&apikey='.$apikey;
 		$url = $url.$urlstring;
 
-		// Valid id so try profile api call
 		$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -45,21 +44,20 @@ if($results->success){ //if can access api then success
 		curl_close($ch);
 
 		if (!$profile) {
-			header("Location: index.php");
+			header("Location: index.php?badpass=1"); // if can't access user profile redirect back to login page with badpass=2 to allow error message to display
 			exit();
 		}
 
 		$profile = json_decode($profile);
 
 		if ($profile->success == false) {
-			header("Location: index.php");
+			header("Location: index.php?badpass=1"); // if can't access user profile redirect back to login page with badpass=2 to allow error message to display
 			exit();
 		}
 
+		// Set SESSION data with Apikey and user data
 		$_SESSION['apikey'] = $apikey;
 		$_SESSION['name'] = $profile->data->first_name.' '.$profile->data->last_name;
-		$_SESSION['short_bio'] = $profile->data->short_bio;
-		$_SESSION['long_bio'] = $profile->data->long_bio;
 		$_SESSION['profile-img'] = '';
 
 		if (!empty($profile->data->profile)) {

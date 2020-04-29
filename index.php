@@ -26,7 +26,14 @@
                     <div class="col-xs-0 col-sm-0 col-md-2" id="BlackSpace"> <!-- col used to help center login form (cols are removed at certain page size) -->
                     </div>
                     <div class="col" id="LoginFormArea">
-						<?php if(isset($_GET['badpass'])){echo "<div class='alert alert-danger' role='alert'>Incorrect login information provided</div>";}?> <!-- login error message displayed if login.php returns badpass=1 after incorrect login info provided -->
+						<?php if(isset($_GET['badpass'])){
+								if($_GET['badpass'] == 1) {
+									echo "<div class='alert alert-danger' role='alert'>Incorrect login information provided</div>";
+								}
+								if ($_GET['badpass'] == 2) {
+									echo "<div class='alert alert-danger' role='alert'>Couldn't retrieve user profile</div>";
+								}
+						}?> <!-- login error message displayed if login.php returns badpass -->
                         <form action='login.php' method='post' id="LoginForm"> <!-- login form created that is linked to the login.php file -->
                             <div class="form-group">
                                 <label id="LoginLabel">Login</label>
