@@ -177,7 +177,7 @@
 			if($success){
 				//use a counter to tally the total seminars being shown
 				$seminarCount = 0;
-				foreach($seminars as $seminar){
+				foreach($seminars as $seminar) {
 					if ($seminar->event_type=="Seminar") {
 					echo "<div class='row p-3 w-100 justify-content-center' data-target='seminar-box' data-name='$seminar->name'>";
 					echo '<div class="col-12">';
@@ -194,7 +194,7 @@
 
 					//echo "<div class='col-sm'>End: $endTime</div>";
 					//percentage complete to be pulled using the edit event details page.
-					echo "<div class='col-sm percentageComp' >0% complete! </div>";
+					// echo "<div class='col-sm percentageComp' >0% complete! </div>";
 					echo "</div>";
 					echo "<hr/>";
 					echo "<div class='row'>";

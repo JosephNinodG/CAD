@@ -58,6 +58,8 @@ if($results->success){
 
 		$_SESSION['apikey'] = $apikey;
 		$_SESSION['name'] = $profile->data->first_name.' '.$profile->data->last_name;
+		$_SESSION['short_bio'] = $profile->data->short_bio;
+		$_SESSION['long_bio'] = $profile->data->long_bio;
 		$_SESSION['profile-img'] = '';
 
 		if (!empty($profile->data->profile)) {
