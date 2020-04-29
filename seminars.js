@@ -6,4 +6,17 @@ $(document).ready(function() {
 
 		location.href = `editEventDetails.php?id=${id}`;
 	});
+
+	$('body').on('keyup', '[data-trigger="search-seminars"]', function() {
+		let searchString = $(this).val();
+		let seminars = $('body').find('[data-target="seminar-box"]');
+
+		$.each(seminars, function() {
+			if (!$(this).attr('data-name').toLowerCase().includes(searchString.toLowerCase())) {
+				$(this).addClass('hide');
+			} else {
+				$(this).removeClass('hide');
+			}
+		});
+	});
 });

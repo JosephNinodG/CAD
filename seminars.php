@@ -163,13 +163,26 @@
 
 			?>
 			<div class="container-fluid pt-5">
+				<div class="row pb-5 justify-content-center">
+					<div class="col-8">
+						<div class="input-group mb-2 mr-sm-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text"><i class="fas fa-search"></i></div>
+							</div>
+							<input type="text" class="form-control" placeholder="Type to search..." data-trigger="search-seminars">
+						</div>
+					</div>
+				</div>
 			<?php
 			if($success){
 				//use a counter to tally the total seminars being shown
 				$seminarCount = 0;
 				foreach($seminars as $seminar){
 					if ($seminar->event_type=="Seminar") {
-						//if the event is a seminar, create a box containing a variety of details for each
+					echo "<div class='row p-3 w-100 justify-content-center' data-target='seminar-box' data-name='$seminar->name'>";
+					echo '<div class="col-12">';
+
+					//if the event is a seminar, create a box containing a variety of details for each
 					echo "<div class='seminarBox' data-trigger='view-event' data-id='$seminar->id'>";
 					echo "<div class='row'>";
 					echo "<div class='col-5'>$confName</div>";
@@ -191,7 +204,8 @@
 					echo "</div>";
 					echo "</div>";
 
-					echo "<br/>";
+					echo "</div>";
+					echo '</div>';
 					//increase the seminar tally now that a new box has been added
 					$seminarCount++;
 

@@ -119,13 +119,13 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 			                            <label for="user-first-name">First Name</label>
-			                            <input type="text" data-target="first-name" name="first-name" class="form-control" id="user-first-name" disabled>
+			                            <input type="text" data-target="first-name" name="first-name" class="form-control" id="user-first-name" disabled required>
 			                        </div>
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
 			                            <label for="user-last-name">Last Name</label>
-			                            <input type="text" data-target="last-name" name="last-name" class="form-control" id="user-last-name" disabled>
+			                            <input type="text" data-target="last-name" name="last-name" class="form-control" id="user-last-name" disabled required>
 			                        </div>
 								</div>
 							</div>
