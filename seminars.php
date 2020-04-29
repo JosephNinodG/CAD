@@ -22,81 +22,9 @@
         <title>Dashboard</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light navbar-bg hide">
-			<div class="container">
-				<div class="row align-items-center justify-content-center w-100">
-					<div class="col-2">
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggle" aria-controls="navbar-toggle" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-					</div>
-					<div class="col-10 text-center">
-						<img class="logo" src="logo.png" alt="BookMeIn2">
-						<div class="collapse navbar-collapse" id="navbar-toggle">
-							<ul class="navbar-nav mt-2 mt-lg-0 text-center">
-								<li class="nav-item">
-									<a class="btn btn-dark mb-2" class="nav-link" href="seminars.php">Dashboard</a>
-								</li>
-								<li class="nav-item">
-									<a class="btn btn-dark mb-2" class="nav-link" href="editProfile.php">Profile</a>
-								</li>
-								<li class="nav-item">
-									<a class="btn btn-dark mb-2" class="nav-link" href="logout.php">Logout</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-		<div class="sidenav">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="row pt-3 justify-content-center">
-							<div class="col-8">
-								<div class="row justify-content-center">
-									<img src="logo.png" alt="BookMeIn2">
-								</div>
-							</div>
-						</div>
-						<div class="row pt-3 justify-content-center">
-							<div class="col-8">
-								<div class="row justify-content-center">
-									<div class="profile-image-container" data-target="profile-image-container">
-										<?= $_SESSION['profile-img'] ?>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row pt-3 justify-content-center">
-							<div class="col-8">
-								<div class="row justify-content-center">
-									<p><?= $_SESSION['name'] ?></p>
-								</div>
-							</div>
-						</div>
-						<div class="row pt-3 justify-content-center">
-							<div class="col-8">
-								<div class="row">
-									<a class="btn btn-dark btn-block mb-2" href="seminars.php">Dashboard</a>
-								</div>
-							</div>
-							<div class="col-8">
-								<div class="row justify-content-center">
-									<a class="btn btn-dark btn-block mb-2" href="editProfile.php">Profile</a>
-								</div>
-							</div>
-							<div class="col-8">
-								<div class="row justify-content-center">
-									<a class="btn btn-dark btn-block mb-2" href="logout.php">Logout</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<!-- Nav bars -->
+		<?php include('mobileNav.php'); ?>
+		<?php include('sidebarNav.php'); ?>
 		<div class="main" id="content">
 			<?php
 			$apiurl = "https://reg.bookmein2.com/api/checkinapi.php";
