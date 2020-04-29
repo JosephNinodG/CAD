@@ -3,7 +3,7 @@
 	session_start();
 
 	if (!isset($_SESSION['apikey'])) {
-		header("Location: index.php");
+		header("Location: /CAD/index.php");
 		exit();
 	}
 
