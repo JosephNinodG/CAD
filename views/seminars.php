@@ -1,4 +1,7 @@
 <?php
+
+	define('accessible', TRUE);
+	
 	// setup session
 	session_start();
 

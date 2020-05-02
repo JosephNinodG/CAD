@@ -1,3 +1,5 @@
+<?php if(!defined('accessible')) { header('location: 404.html'); exit(); } ?>
+
 <!-- Desktop sidebar -->
 <div class="sidenav">
 	<div class="container">

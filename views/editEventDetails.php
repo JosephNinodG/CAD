@@ -1,5 +1,7 @@
 <?php
 
+	define('accessible', TRUE);
+
 	session_start();
 
 	// If apikey not set redirect to login page
