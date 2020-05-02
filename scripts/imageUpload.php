@@ -9,7 +9,7 @@
 
     $fileType = pathinfo($_FILES['cover-image-file']['name'], PATHINFO_EXTENSION);
 
-    if (!in_array($fileType, $acceptableTypes)) {
+    if (!in_array(strtolower($fileType), $acceptableTypes)) {
         $response['error'] = true;
 		$response['errorMsg'] = "Invalid file type submitted. Only .jpg .jpeg and .png files are permitted.";
         echo json_encode($response);

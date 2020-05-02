@@ -13,7 +13,7 @@
 
     $fileType = pathinfo($_FILES['presentation-file']['name'], PATHINFO_EXTENSION);
 
-    if (!in_array($fileType, $acceptableTypes)) {
+    if (!in_array(strtolower($fileType), $acceptableTypes)) {
         $response['error'] = true;
 		$response['errorMsg'] = "Invalid file type submitted. Only .jpg .jpeg .png .pdf .ppt and .pptx files are permitted.";
         echo json_encode($response);
@@ -58,14 +58,14 @@
 
 	if (!isset($fileDetails->success)) {
 		$response['error'] = true;
-		$response['errorMsg'] = 'Profile API failed';
+		$response['errorMsg'] = 'Upload API failed';
 		echo json_encode($response);
 		return;
 	}
 
 	if ($fileDetails->success == false) {
 		$response['error'] = true;
-		$response['errorMsg'] = 'Profile API failed';
+		$response['errorMsg'] = 'Upload API failed';
 		echo json_encode($response);
 		return;
 	}

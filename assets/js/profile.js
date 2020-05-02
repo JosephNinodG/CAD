@@ -41,11 +41,11 @@ $(document).ready(function() {
         ).done(function(file) {
 			// If error, show error message
             if (file.error) {
-				$('body').find('[data-target="profile-image-error"]').html(file.errorMsg);
-				$('body').find('[data-target="profile-image-error"]').show();
+				$('body').find('[data-target="cover-image-error"]').html(file.errorMsg);
+				$('body').find('[data-target="cover-image-error"]').show();
             } else {
 				// Hide any previous errors
-				$('body').find('[data-target="profile-image-error"]').hide();
+				$('body').find('[data-target="cover-image-error"]').hide();
 
 				// Show the image
                 displayImage(file.file);
@@ -246,7 +246,8 @@ function updateProfile() {
 
 		$('body').find('[data-target="sidebar-name"]').html(window.formValues.first_name+' '+window.formValues.last_name);
 
-		if (window.file.length) {
+		if (window.file.data) {
+			console.log('updating');
 			let html = `<img class="img-fluid" src="data:image/png;base64, ${window.file.data}">`;
 
 			// Set profile image
