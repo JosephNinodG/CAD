@@ -19,8 +19,8 @@ This project made use of the following technologies:
 
 # Dependencies
 
-- jQuery
-- Popper
-- Bootstrap
+- jQuery (v. 3.4.1)
+- Popper (v. 1.16.0)
+- Bootstrap (v. 4.4.1)
 - Fontawesome
 - tinyMCE
