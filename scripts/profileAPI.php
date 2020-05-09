@@ -10,6 +10,7 @@ $response = [
 // setup session
 session_start();
 
+// if apikey not set, user not logged in
 if (!isset($_SESSION['apikey'])) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'No valid apikey found';
@@ -17,6 +18,7 @@ if (!isset($_SESSION['apikey'])) {
 	return;
 }
 
+// get apikey
 $apikey = $_SESSION['apikey'];
 
 // API URL for getting event details
@@ -34,6 +36,7 @@ $profile = curl_exec($ch);
 
 curl_close($ch);
 
+// if no result, error out
 if (!$profile) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'API failed';
@@ -41,8 +44,10 @@ if (!$profile) {
 	return;
 }
 
+// decode result to see response
 $profile = json_decode($profile);
 
+// if success is false, error out
 if ($profile->success == false) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'API failed';
@@ -50,12 +55,14 @@ if ($profile->success == false) {
 	return;
 }
 
+// set data
 $data['first_name'] = $profile->data->first_name;
 $data['last_name'] = $profile->data->last_name;
 $data['short_bio'] = $profile->data->short_bio;
 $data['long_bio'] = $profile->data->biography;
 $data['profile'] = $profile->data->profile;
 
+// return response
 $response['data'] = $data;
 echo json_encode($response);
 return;

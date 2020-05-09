@@ -1,3 +1,4 @@
+<!-- No direct access -->
 <?php if(!defined('accessible')) { header('location: 404.html'); exit(); } ?>
 
 <!-- Desktop sidebar -->

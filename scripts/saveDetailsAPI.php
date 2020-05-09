@@ -1,6 +1,9 @@
 <?php
 
+// start session
 session_start();
+
+// get apikey
 $apikey = $_SESSION['apikey'];
 
 // Default response
@@ -10,6 +13,7 @@ $response = [
 	'data'  	=> [],
 ];
 
+// get iost data
 $vars = json_decode($_POST['data']);
 
 // Remove new lines that will break api call
@@ -28,6 +32,7 @@ if ($id == '') {
 	return;
 }
 
+// set curl array
 $data = array(
 	'action' => 'editlocation',
 	'apikey' => $apikey,
@@ -37,6 +42,7 @@ $data = array(
 	'presentation_type' => $type,
 );
 
+// attempt curl
 $ch = curl_init('https://reg.bookmein2.com/api/checkinapi.php');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -47,6 +53,7 @@ $details = curl_exec($ch);
 // close the connection
 curl_close($ch);
 
+// if no result, error out
 if (!$details) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'Event API failed';
@@ -54,8 +61,10 @@ if (!$details) {
 	return;
 }
 
+// deode result to see response
 $details = json_decode($details);
 
+// if success isn't set, error out
 if (!isset($details->success)) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'Event API failed';
@@ -63,6 +72,7 @@ if (!isset($details->success)) {
 	return;
 }
 
+// if success is false, error out
 if ($details->success == false) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'Event API failed';
@@ -70,9 +80,7 @@ if ($details->success == false) {
 	return;
 }
 
-// API URL for setting profile details
-$url = 'https://reg.bookmein2.com/api/checkinapi.php'.'?action=updateprofile&apikey='.$apikey.'&short_bio='.$short_bio.'&bio='.$long_bio;
-
+// set curl data
 $data = array(
 	'action' => 'updateprofile',
 	'apikey' => $apikey,
@@ -80,6 +88,7 @@ $data = array(
 	'bio' => $long_bio,
 );
 
+// attemp curl
 $ch = curl_init('https://reg.bookmein2.com/api/checkinapi.php');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -90,6 +99,7 @@ $profile = curl_exec($ch);
 // close the connection
 curl_close($ch);
 
+// if no result, error out
 if (!$profile) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'Profile API failed';
@@ -97,8 +107,10 @@ if (!$profile) {
 	return;
 }
 
+// decode result to see response
 $profile = json_decode($profile);
 
+// if success not set, error out
 if (!isset($profile->success)) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'Profile API failed';
@@ -106,6 +118,7 @@ if (!isset($profile->success)) {
 	return;
 }
 
+// if success is false, error out
 if ($profile->success == false) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'Profile API failed';
@@ -113,5 +126,6 @@ if ($profile->success == false) {
 	return;
 }
 
+// return response
 echo json_encode($response);
 return;

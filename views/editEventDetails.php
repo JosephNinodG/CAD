@@ -1,5 +1,6 @@
 <?php
 
+	// To allow the navbars to be included
 	define('accessible', TRUE);
 
 	session_start();
@@ -17,9 +18,9 @@
     <head>
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script src="https://kit.fontawesome.com/176870990a.js" crossorigin="anonymous"></script>
-		<script src="https://cdn.tiny.cloud/1/44tuep5jmn2ahu9y2iv6e6u3n7srjy2odh8nht32st8jyexs/tinymce/5/tinymce.min.js" referrerpolicy="origin"/></script>
         <link rel="stylesheet" href="/CAD/assets/css/master.css">
         <title>Event Details</title>
 	</head>
@@ -27,6 +28,8 @@
 		<!-- Nav bars -->
 		<?php include('mobileNav.php'); ?>
 		<?php include('sidebarNav.php'); ?>
+
+		<!-- Page content -->
 		<div class="main" id="content">
 	        <div class="container">
 	            <form id="details-form" >
@@ -44,6 +47,7 @@
 	                        </div>
 	                    </div>
 	                </div>
+					<!-- Cover Image section not supported by API -->
 	                <!-- <div class="row pt-3">
 	                    <div class="col">
 	                    	<div class="cover-image-container" data-target="cover-image-container"></div>
@@ -134,7 +138,9 @@
 				</div>
 			</div>
 	        <!-- Modals -->
-			<div id="cover-image-modal" class="modal" tabindex="-1" role="dialog">
+
+			<!-- Cover Image modal -->
+			<!-- <div id="cover-image-modal" class="modal" tabindex="-1" role="dialog">
 	            <div class="modal-dialog" role="document">
 	                <div class="modal-content">
 	                    <div class="modal-header">
@@ -158,8 +164,9 @@
 	                    </form>
 	                </div>
 	            </div>
-	        </div>
+	        </div> -->
 
+			<!-- Modal to upload presentation file -->
 	        <div id="presentation-modal" class="modal" tabindex="-1" role="dialog">
 	            <div class="modal-dialog" role="document">
 	                <div class="modal-content">
@@ -199,7 +206,8 @@
 	            </div>
 	        </div>
 
-			<div id="lightbox-modal" class="modal" tabindex="-1" role="dialog">
+			<!-- For expanding cover image -->
+			<!-- <div id="lightbox-modal" class="modal" tabindex="-1" role="dialog">
 	            <div class="modal-dialog modal-lg" role="document">
 	                <div class="modal-content">
 						<div class="modal-header">
@@ -211,13 +219,16 @@
 						<div data-target="lightbox-image"></div>
 					</div>
 	            </div>
-	        </div>
+	        </div> -->
 		</div>
     </body>
+	<!-- Scripts -->
     <footer>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/176870990a.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.tiny.cloud/1/44tuep5jmn2ahu9y2iv6e6u3n7srjy2odh8nht32st8jyexs/tinymce/5/tinymce.min.js" referrerpolicy="origin"/></script>
         <script src="/CAD/assets/js/eventDetails.js" type="text/javascript"></script>
     </footer>
 </html>

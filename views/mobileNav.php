@@ -1,5 +1,6 @@
+<!-- No direct access -->
 <?php if(!defined('accessible')) { header('location: 404.html'); exit(); } ?>
-	
+
 <!-- Mobile Nav -->
 <nav class="navbar navbar-expand-lg navbar-light navbar-bg hide">
 	<div class="container">

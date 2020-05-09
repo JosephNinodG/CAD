@@ -2,6 +2,7 @@ $(document).ready(function() {
 	window.formValues = {};
 	window.file = {};
 
+	// on load, initiate view
 	initiateView();
 
 	$('body').on('click tap', '[data-trigger="edit-profile"]', function(event) {
@@ -14,6 +15,7 @@ $(document).ready(function() {
 		enableEdit();
 	});
 
+	// On click of cancel changes, reset form back to defaults
 	$('body').on('click tap', '[data-trigger="cancel-profile"]', function(event) {
 		event.preventDefault();
 
@@ -25,6 +27,7 @@ $(document).ready(function() {
 		$('html, body').animate({ scrollTop: 0 }, 'slow');
 	});
 
+	// On click of upload image, show modal
 	$('body').on('click tap', '[data-target="upload-profile-image"]', function(event) {
 		event.preventDefault();
 
@@ -79,6 +82,7 @@ $(document).ready(function() {
     });
 });
 
+// Attempt to initiate view by getting any currently set profile data from API
 function initiateView() {
 	$.when(
 		getProfile()
@@ -93,6 +97,7 @@ function initiateView() {
 	});
 }
 
+// Back end call for API profile data
 function getProfile() {
 	return $.ajax({
 		url: '/CAD/scripts/profileAPI.php',
@@ -101,6 +106,7 @@ function getProfile() {
 	});
 }
 
+// Update view with the api data
 function displayView(data) {
 	$('body').find('[data-target="first-name"]').val(data.first_name);
 	$('body').find('[data-target="last-name"]').val(data.last_name);
@@ -114,6 +120,7 @@ function displayView(data) {
 		$('body').find('#profile-form [data-target="profile-image-container"]').html(html);
 	}
 
+	// Set the initial form values to revert back to
 	window.startValues = {
 		'first_name' : data.first_name,
 		'last_name' : data.last_name,
@@ -180,6 +187,7 @@ function initReadonlyTinymce() {
 	$('body').find('[data-target="bio-current-chars"]').html($('body').find('#user-short-biography').val().length + '/255 characters');
 }
 
+// Allow the form to be edited
 function enableEdit() {
 	$('body').find('[data-target="first-name"]').attr('disabled', false);
 	$('body').find('[data-target="last-name"]').attr('disabled', false);
@@ -189,6 +197,7 @@ function enableEdit() {
 	$('body').find('[data-target="edit-row"]').addClass('hide');
 }
 
+// Revert form back to default data
 function revertFields() {
 	$('body').find('[data-target="first-name"]').attr('disabled', true);
 	$('body').find('[data-target="last-name"]').attr('disabled', true);
@@ -229,6 +238,7 @@ function displayImage(file) {
 	$('body').find('#profile-form [data-target="profile-image-container"]').html(html);
 }
 
+// Save form values to be sent to back end
 function saveFormValues() {
 	window.formValues.first_name = $('body').find('[data-target="first-name"]').val();
 	window.formValues.last_name = $('body').find('[data-target="last-name"]').val();
@@ -236,6 +246,7 @@ function saveFormValues() {
 	window.formValues.longBiography = tinymce.editors['user-long-biography'].getContent();
 }
 
+// Attempt to save changes made to profile
 function updateProfile() {
 	$.when(
 		attemptSave()
@@ -244,8 +255,10 @@ function updateProfile() {
 			return;
 		}
 
+		// Update the sidebar with changes to name
 		$('body').find('[data-target="sidebar-name"]').html(window.formValues.first_name+' '+window.formValues.last_name);
 
+		// Update sidebar with changes to profile image
 		if (window.file.data) {
 			console.log('updating');
 			let html = `<img class="img-fluid" src="data:image/png;base64, ${window.file.data}">`;
@@ -257,6 +270,7 @@ function updateProfile() {
 }
 
 function attemptSave() {
+	// stringify vars for post
 	let data = JSON.stringify({
 		'first_name': window.formValues.first_name,
 		'last_name': window.formValues.last_name,
@@ -265,6 +279,7 @@ function attemptSave() {
 		'profile': window.file,
 	});
 
+	// return ajax response
 	return $.ajax({
         url: '/CAD/scripts/saveProfileAPI.php',
         type: 'POST',
@@ -273,6 +288,7 @@ function attemptSave() {
     });
 }
 
+// revert form to unchangeable state
 function disableEdit() {
 	$('body').find('[data-target="first-name"]').attr('disabled', true);
 	$('body').find('[data-target="last-name"]').attr('disabled', true);

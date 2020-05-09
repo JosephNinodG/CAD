@@ -105,6 +105,8 @@ $(document).ready(function() {
         });
     });
 
+	// -- For Cover Image section not supported by API --
+
 	// On submit of cover image upload, upload and display image
 	// $(document).on("submit", "#cover-image-form", function(event){
     //     event.preventDefault();
@@ -164,6 +166,8 @@ $(document).ready(function() {
         }
     });
 
+	// -- For Cover Image section not supported by API --
+
 	// On click of remove image, remove cover image
 	// $('body').on('click tap', '[data-trigger="remove-image"]', function(event) {
 	// 	event.preventDefault();
@@ -205,6 +209,7 @@ function initiateView() {
 
 	$('body').find('[data-target="presentation-post-id"]').val(window.eventId);
 
+	// Attempt to get event details, if error redirect away from page
 	$.when(
 		getDetails(id)
 	).done(function(data) {
@@ -269,34 +274,42 @@ function displayView(data) {
 }
 
 function defaultForm(data) {
+	// If var retrieved from API, update form
 	if (data.start_time) {
 		$('body').find('#seminar-start-time').val(data.start_time);
 	}
 
+	// If var retrieved from API, update form
 	if (data.end_time) {
 		$('body').find('#seminar-end-time').val(data.end_time);
 	}
 
+	// If var retrieved from API, update form
 	if (data.name) {
 		$('body').find('#seminar-title').val(data.name);
 	}
 
+	// If var retrieved from API, update form
 	if (data.type) {
 		$('body').find('#seminar-type').val(data.type);
 	}
 
+	// If var retrieved from API, update form
 	if (data.short_desc) {
 		$('body').find('#seminar-short-description').val(data.short_desc);
 	}
 
+	// If var retrieved from API, update form
 	if (data.long_desc) {
 		$('body').find('#seminar-long-description').val(data.long_desc);
 	}
 
+	// If var retrieved from API, update form
 	if (data.short_bio) {
 		$('body').find('#seminar-short-biography').val(data.short_bio);
 	}
 
+	// If var retrieved from API, update form
 	if (data.long_bio) {
 		$('body').find('#seminar-long-biography').val(data.long_bio);
 	}
@@ -313,6 +326,7 @@ function defaultForm(data) {
 
 	if (files) {
 		$.each(files, function(index, file) {
+			console.log(file);
 			file.title = file.title != null && file.title != '' ? file.title : 'N/A';
 			file.name = file.filename;
 			file.purpose = file.description != null && file.description != '' ? file.description : 'N/A';
@@ -325,6 +339,7 @@ function defaultForm(data) {
 		        // 'data'      : file.data
 		    }
 
+			// display files in front end
 			showFile(file);
 		});
 	}
@@ -360,6 +375,7 @@ function defaultProgressBar() {
         window.completePercent += 12.5;
     }
 
+	// If a presentation file is set, mark section as complete
 	if (Object.keys(window.filesToUpload).length > 0) {
 		window.completePercent += 25;
 	}
@@ -537,6 +553,7 @@ function initReadonlyTinymce() {
 		toolbar:false
     });
 
+	// Show character count
 	$('body').find('[data-target="desc-current-chars"]').html($('body').find('#seminar-short-description').val().length + '/100 characters');
 	$('body').find('[data-target="bio-current-chars"]').html($('body').find('#seminar-short-biography').val().length + '/255 characters');
 }
@@ -555,6 +572,7 @@ function enableEdit() {
 	$('body').find('[data-target="presentation-row"]').show();
 	$('body').find('[data-target="save-row"]').show();
 
+	// reset and show progress bar
 	defaultProgressBar();
 }
 
@@ -583,6 +601,7 @@ function revertFields() {
 	$('body').find('[data-target="cover-image-container"]').html(window.startValues.coverImage);
 }
 
+// Update the saved form values to be sent to back end
 function saveFormValues() {
 	window.formValues.seminarType = $('body').find('#seminar-type').val().trim();
 	window.formValues.shortDescription = tinymce.editors['seminar-short-description'].getContent();
@@ -591,15 +610,18 @@ function saveFormValues() {
 	window.formValues.longBiography = tinymce.editors['seminar-long-biography'].getContent();
 }
 
+// Attempt to update event details
 function updateEventDetails() {
 	$.when(
 		attemptSave()
 	).done(function(data) {
-		// error handling
+		// any error handling goes here
 	});
 }
 
+// Attempt to save changes
 function attemptSave() {
+	// stringify data for post
 	let data = JSON.stringify({
 		'id': window.eventId,
 		'type': window.formValues.seminarType,
@@ -609,6 +631,7 @@ function attemptSave() {
 		'long_bio': window.formValues.longBiography,
 	});
 
+	// return ajax response
 	return $.ajax({
         url: '/CAD/scripts/saveDetailsAPI.php',
         type: 'POST',
@@ -658,6 +681,8 @@ function updateProgressBarAfterUpload(currentFiles) {
 
 	return;
 }
+
+// -- For cover image upload that wasn't supported by API --
 
 // Update progress bar after image upload
 // function updateProgressBarAfterImageUpload(currentImage) {

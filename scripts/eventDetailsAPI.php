@@ -10,6 +10,7 @@ $response = [
 // setup session
 session_start();
 
+// if apikey not set then user isn't logged in
 if (!isset($_SESSION['apikey'])) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'No valid apikey found';
@@ -45,6 +46,7 @@ $details = curl_exec($ch);
 
 curl_close($ch);
 
+// If call failed, error out
 if (!$details) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'API failed';
@@ -52,8 +54,10 @@ if (!$details) {
 	return;
 }
 
+// Decode result to see response
 $details = json_decode($details);
 
+// If success is false, error out
 if ($details->data->success == false) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'API failed';
@@ -61,6 +65,7 @@ if ($details->data->success == false) {
 	return;
 }
 
+// Add data fields from the api
 $data['start_time'] = date('d/m/Y g:i A', strtotime($details->data->location->start_time));
 $data['end_time'] = date('d/m/Y g:i A', strtotime($details->data->location->end_time));
 $data['name'] = $details->data->location->name;
@@ -86,6 +91,7 @@ $profile = curl_exec($ch);
 
 curl_close($ch);
 
+// If call failed, error out
 if (!$profile) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'API failed';
@@ -93,8 +99,10 @@ if (!$profile) {
 	return;
 }
 
+// Decode result to see response
 $profile = json_decode($profile);
 
+// If success is false, error out
 if ($profile->success == false) {
 	$response['error'] = true;
 	$response['errorMsg'] = 'API failed';
@@ -102,9 +110,11 @@ if ($profile->success == false) {
 	return;
 }
 
+// Add data fields from api
 $data['short_bio'] = $profile->data->short_bio;
 $data['long_bio'] = $profile->data->biography;
 
+// Return data
 $response['data'] = $data;
 echo json_encode($response);
 return;
